@@ -38,30 +38,39 @@ namespace MandelbrotProgramm_TF
 */
 
 
-            for (int x = 0; x < mandlebrotOutput.Width; x++)
+            for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
             {
-                for (int y = 0; y < mandlebrotOutput.Height; y++)
+                for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
                 {
-                    
-                    double a = ((double)(x - mandlebrotOutput.Width / 2) / (mandlebrotOutput.Width / 4));
-                    double b = ((double)(y - mandlebrotOutput.Height / 2) / (mandlebrotOutput.Height /4));
+                    double x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (mandlebrotOutput.Width / 4));
+                    double y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (mandlebrotOutput.Height / 4));
 
-                    double z = 0;
-                    double c = 0;
+                    double a = 0;
+                    double b = 0;
 
-
-                    
+                    int counter = 1;                   
                     for (int i = 1; i <= 100; i++)
                     {
-                        a = (double)((a * a) - (b * b)) + x;
+                        double temporary = (double)((a * a) - (b * b)) + x;
                         b = (double)(2 * a * b + y);
-                        z = z + a + b;
-                        if (Math.Sqrt(a * a + b * b) > 2) 
-                        {
-                            plaatje.SetPixel(x, y, Color.Black);                      
+                        a = temporary;
+                        
+
+                        double afstand = Math.Sqrt(a * a + b * b);
+
+                        if (afstand > 2) 
+                        {                     
                             break;
                         }
-
+                        counter++;
+                    }
+                    if (counter % 2 == 0)
+                    {
+                        plaatje.SetPixel(OutputX, OutputY, Color.Black);
+                    }
+                    else
+                    {
+                        plaatje.SetPixel(OutputX, OutputY, Color.White);
                     }
                 }
             }

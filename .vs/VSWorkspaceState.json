@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\bin\\Debug",
-    "\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\bin\\Debug\\net6.0-windows"
+    "\\MandelbrotProgramm-TF",
+    "\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF"
   ],
-  "SelectedNode": "\\MandelbrotProgramm-TF",
+  "SelectedNode": "\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
