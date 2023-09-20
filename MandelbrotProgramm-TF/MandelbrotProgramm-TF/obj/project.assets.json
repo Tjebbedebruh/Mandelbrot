@@ -8,19 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\tjell\\.nuget\\packages\\": {}
+    "C:\\Users\\flori\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tjell\\OneDrive - Universiteit Utrecht\\Documents\\UNI\\Imperatief Programmeren\\Programms\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF.csproj",
+      "projectUniqueName": "C:\\Users\\flori\\Source\\Repos\\Mandelbrot\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF.csproj",
       "projectName": "MandelbrotProgramm-TF",
-      "projectPath": "C:\\Users\\tjell\\OneDrive - Universiteit Utrecht\\Documents\\UNI\\Imperatief Programmeren\\Programms\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF.csproj",
-      "packagesPath": "C:\\Users\\tjell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tjell\\OneDrive - Universiteit Utrecht\\Documents\\UNI\\Imperatief Programmeren\\Programms\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\obj\\",
+      "projectPath": "C:\\Users\\flori\\Source\\Repos\\Mandelbrot\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF.csproj",
+      "packagesPath": "C:\\Users\\flori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\flori\\Source\\Repos\\Mandelbrot\\MandelbrotProgramm-TF\\MandelbrotProgramm-TF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tjell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\flori\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
