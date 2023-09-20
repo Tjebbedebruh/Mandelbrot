@@ -47,10 +47,13 @@ namespace MandelbrotProgramm_TF
 
                     double a = 0;
                     double b = 0;
+                    int maxNum = 100;
 
-                    int counter = 1;                   
-                    for (int i = 1; i <= 100; i++)
+
+                    int counter = 0;                   
+                    for (int i = 1; i <= maxNum; i++)
                     {
+                        counter++;
                         double temporary = (double)((a * a) - (b * b)) + x;
                         b = (double)(2 * a * b + y);
                         a = temporary;
@@ -62,9 +65,9 @@ namespace MandelbrotProgramm_TF
                         {                     
                             break;
                         }
-                        counter++;
+                        
                     }
-                    if (counter % 2 == 0)
+                    if (counter % 2 == 0 || counter >= maxNum)
                     {
                         plaatje.SetPixel(OutputX, OutputY, Color.Black);
                     }
