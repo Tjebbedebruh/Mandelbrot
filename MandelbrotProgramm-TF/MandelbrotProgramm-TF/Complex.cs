@@ -8,5 +8,18 @@ namespace MandelbrotProgramm_TF
 {
     internal class Complex
     {
+        public double a;
+        public double b;
+
+        void Pythagoras()
+        { 
+            
+        }
+
+
+
+
+
+        }
     }
 }
