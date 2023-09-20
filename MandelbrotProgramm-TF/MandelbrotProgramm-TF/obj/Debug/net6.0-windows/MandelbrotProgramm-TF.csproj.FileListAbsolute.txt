@@ -1,0 +1,16 @@
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\bin\Debug\net6.0-windows\MandelbrotProgramm-TF.exe
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\bin\Debug\net6.0-windows\MandelbrotProgramm-TF.deps.json
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\bin\Debug\net6.0-windows\MandelbrotProgramm-TF.runtimeconfig.json
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\bin\Debug\net6.0-windows\MandelbrotProgramm-TF.dll
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\bin\Debug\net6.0-windows\MandelbrotProgramm-TF.pdb
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm_TF.Form1.resources
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.csproj.GenerateResource.cache
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.AssemblyInfoInputs.cache
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.AssemblyInfo.cs
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.csproj.CoreCompileInputs.cache
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.dll
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\refint\MandelbrotProgramm-TF.dll
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.pdb
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\MandelbrotProgramm-TF.genruntimeconfig.cache
+C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\obj\Debug\net6.0-windows\ref\MandelbrotProgramm-TF.dll
