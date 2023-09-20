@@ -3,7 +3,9 @@ namespace MandelbrotProgramm_TF
     internal static class Program
     {
        static void Main()
-        {
+        {   
+
+            //deffineren scherm
             Form scherm = new Form();
             scherm.Text = "ElastiekC";
             scherm.ClientSize = new Size(1400, 800);
@@ -17,43 +19,26 @@ namespace MandelbrotProgramm_TF
             mandlebrotOutput.Image = plaatje;
             mandlebrotOutput.BackColor = Color.LightGray;
 
-            
-
-
-
-
-            
-/*
-            double Pythagoras()
-            { 
-                return Math.Sqrt(a * a + b * b);
-            }
-
-            void Vermenigvuldiging()
-            {
-                double tijdelijk = ((a * a) - (b * b));
-                a = tijdelijk;
-                b = 2 * a * b;
-            }
-*/
 
 
             for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
             {
                 for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
                 {
+                    //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
                     double x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (mandlebrotOutput.Width / 4));
                     double y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (mandlebrotOutput.Height / 4));
 
+                    //startwaardes van de formule
                     double a = 0;
                     double b = 0;
                     int maxNum = 100;
 
-
-                    int counter = 0;                   
+                    //Mandelgetal uitrekenen per pixel
+                    int Mandelgetal = 0;                   
                     for (int i = 1; i <= maxNum; i++)
                     {
-                        counter++;
+                        Mandelgetal++;
                         double temporary = (double)((a * a) - (b * b)) + x;
                         b = (double)(2 * a * b + y);
                         a = temporary;
@@ -67,7 +52,8 @@ namespace MandelbrotProgramm_TF
                         }
                         
                     }
-                    if (counter % 2 == 0 || counter >= maxNum)
+                    //pixels kleuren op basis van het mandelgetal
+                    if (Mandelgetal % 2 == 0 || Mandelgetal >= maxNum)
                     {
                         plaatje.SetPixel(OutputX, OutputY, Color.Black);
                     }
