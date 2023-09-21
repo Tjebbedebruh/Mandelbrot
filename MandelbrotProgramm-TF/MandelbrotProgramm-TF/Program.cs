@@ -158,7 +158,7 @@ namespace MandelbrotProgramm_TF
 
                 scherm.MouseClick += mouseClick;
 
-                int maxNum = int.Parse(invoerMaxTekst.Text);
+                int maxNum = int.Parse(invoerMax.Text);
                 // int maxNum = 100;
 
 
@@ -218,7 +218,7 @@ namespace MandelbrotProgramm_TF
                     zoomInvoer.Text = "1";
                     xInvoer.Text = "0";
                     yInvoer.Text = "0";
-                    invoerMaxTekst.Text = "0";
+                    invoerMax.Text = "0";
                     Mandelbrot(sender, e);
 
                     //tekstvakjes leegmaken
