@@ -33,13 +33,13 @@ namespace MandelbrotProgramm_TF
             Label xInvoerTekst = new Label();
             scherm.Controls.Add(xInvoerTekst);
             xInvoerTekst.Location = new Point(10, 100);
-            xInvoerTekst.Size = new Size(90, 50);
+            xInvoerTekst.Size = new Size(90, 20);
             xInvoerTekst.Text = "X invoer: ";
 
             TextBox yInvoer = new TextBox();
             scherm.Controls.Add(yInvoer);
             yInvoer.Location = new Point(120, 140);
-            yInvoer.Size = new Size(90, 50);
+            yInvoer.Size = new Size(90, 20);
 
             Label yInvoerTekst = new Label();
             scherm.Controls.Add(yInvoerTekst);
@@ -61,7 +61,11 @@ namespace MandelbrotProgramm_TF
             reset.BackColor = Color.LightGray;
             reset.Text = "Reset!";
 
-
+            Label mandlebrotOutput = new Label();
+            scherm.Controls.Add(mandlebrotOutput);
+            mandlebrotOutput.Size = new Size(plaatjex, plaatjey);
+            mandlebrotOutput.Location = new Point(700, 100);
+            mandlebrotOutput.BackColor = Color.LightGray;
 
             void Mandelbrot (object sender , EventArgs e)
             {
@@ -71,12 +75,7 @@ namespace MandelbrotProgramm_TF
                 double vensterY = double.Parse(yInvoer.Text) / 300;
 
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
-                Label mandlebrotOutput = new Label();
-                scherm.Controls.Add(mandlebrotOutput);
-                mandlebrotOutput.Size = new Size(plaatje.Width, plaatje.Height);
-                mandlebrotOutput.Location = new Point(700, 100);
                 mandlebrotOutput.Image = plaatje;
-                mandlebrotOutput.BackColor = Color.LightGray;
 
                 //begin aan muisklik dingen
                 void mouseClick(object sender, MouseEventArgs mouse)
