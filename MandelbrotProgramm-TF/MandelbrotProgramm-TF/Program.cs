@@ -11,55 +11,93 @@ namespace MandelbrotProgramm_TF
             scherm.Text = "MandelbrotTF";
             scherm.ClientSize = new Size(1400, 800);
 
+            Color BackColor = Color.FromArgb(27, 27, 27);
+            scherm.BackColor = BackColor;
+            Color BackColorFour = Color.FromArgb(48, 48, 48);
+
+
             int plaatjex = 600;
             int plaatjey = 600;
 
             TextBox zoomInvoer = new TextBox();
             scherm.Controls.Add(zoomInvoer);
-            zoomInvoer.Location = new Point(120, 60);
-            zoomInvoer.Size = new Size(90, 50);
+            zoomInvoer.Location = new Point(100, 60);
+            zoomInvoer.Size = new Size(100, 50);
 
             Label zoomTekst = new Label();
             scherm.Controls.Add(zoomTekst);
-            zoomTekst.Location = new Point(10, 60);
+            zoomTekst.Location = new Point(0, 60);
             zoomTekst.Size = new Size(90, 20);
-            zoomTekst.Text = "Zoomwaarde: ";
+            zoomTekst.Text = " Zoomwaarde: ";
+            zoomTekst.ForeColor = Color.White;
+            zoomTekst.BackColor = BackColorFour;
+
 
             TextBox xInvoer = new TextBox();
             scherm.Controls.Add(xInvoer);
-            xInvoer.Location = new Point(120, 100);
-            xInvoer.Size = new Size(90, 50);
+            xInvoer.Location = new Point(100, 100);
+            xInvoer.Size = new Size(100, 50);
 
             Label xInvoerTekst = new Label();
             scherm.Controls.Add(xInvoerTekst);
-            xInvoerTekst.Location = new Point(10, 100);
+            xInvoerTekst.Location = new Point(0, 100);
             xInvoerTekst.Size = new Size(90, 20);
-            xInvoerTekst.Text = "X invoer: ";
+            xInvoerTekst.Text = " X invoer: ";
+            xInvoerTekst.ForeColor = Color.White;
+            xInvoerTekst.BackColor = BackColorFour;
 
             TextBox yInvoer = new TextBox();
             scherm.Controls.Add(yInvoer);
-            yInvoer.Location = new Point(120, 140);
-            yInvoer.Size = new Size(90, 20);
+            yInvoer.Location = new Point(100, 140);
+            yInvoer.Size = new Size(100, 50);
+
 
             Label yInvoerTekst = new Label();
             scherm.Controls.Add(yInvoerTekst);
-            yInvoerTekst.Location = new Point(10, 140);
-            yInvoerTekst.Size = new Size(90, 50);
-            yInvoerTekst.Text = "Y invoer: ";
+            yInvoerTekst.Location = new Point(0, 140);
+            yInvoerTekst.Size = new Size(90, 20);
+            yInvoerTekst.Text = " Y invoer: ";
+            yInvoerTekst.ForeColor = Color.White;
+            yInvoerTekst.BackColor = BackColorFour;
 
             Button go = new Button();
             scherm.Controls.Add(go);
-            go.Location = new Point(10, 190);
-            go.Size = new Size(90, 20);
+            go.Location = new Point(0, 180);
+            go.Size = new Size(100, 30);
             go.BackColor = Color.LightGray;
             go.Text = "Go!";
+            go.ForeColor = Color.White;
+            go.BackColor = Color.SlateGray;
 
             Button reset = new Button();
             scherm.Controls.Add(reset);
-            reset.Location = new Point(110, 190);
-            reset.Size = new Size(90, 20);
+            reset.Location = new Point(100, 180);
+            reset.Size = new Size(100, 30);
             reset.BackColor = Color.LightGray;
             reset.Text = "Reset!";
+            reset.ForeColor = Color.White;
+            reset.BackColor = Color.SlateGray;
+
+            Label ColorFillThree = new Label();
+            scherm.Controls.Add(ColorFillThree);
+            ColorFillThree.Location = new Point(0, 0);
+            ColorFillThree.Size = new Size(200, 1200);
+
+            ColorFillThree.BackColor = BackColorFour;
+
+            Label ColorFillTwo = new Label();
+            scherm.Controls.Add(ColorFillTwo);
+            ColorFillTwo.Location = new Point(0, 0);
+            ColorFillTwo.Size = new Size(400, 1200);
+            Color BackColorThree = Color.FromArgb(41, 41, 41);
+            ColorFillTwo.BackColor = BackColorThree;
+
+            Label ColorFill = new Label();
+            scherm.Controls.Add(ColorFill);
+            ColorFill.Location = new Point(0, 0);
+            ColorFill.Size = new Size(600, 1200);
+            Color BackColorTwo = Color.FromArgb(34, 34, 34);
+            ColorFill.BackColor = BackColorTwo;
 
             Label mandlebrotOutput = new Label();
             scherm.Controls.Add(mandlebrotOutput);

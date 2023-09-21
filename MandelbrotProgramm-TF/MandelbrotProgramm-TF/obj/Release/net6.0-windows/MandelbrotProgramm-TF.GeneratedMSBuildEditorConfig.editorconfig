@@ -14,4 +14,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MandelbrotProgramm_TF
-build_property.ProjectDir = C:\Users\tjell\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\
+build_property.ProjectDir = C:\Users\flori\Source\Repos\Mandelbrot\MandelbrotProgramm-TF\MandelbrotProgramm-TF\
