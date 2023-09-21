@@ -74,8 +74,8 @@ namespace MandelbrotProgramm_TF
             {
                 double scale = double.Parse(zoomInvoer.Text);
                 //double scale = 1;
-                double vensterX = 0.1 * double.Parse(xInvoer.Text); // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-                double vensterY = 0.1 * double.Parse(yInvoer.Text);
+                double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                double vensterY = double.Parse(yInvoer.Text) / 300;
 
 
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
