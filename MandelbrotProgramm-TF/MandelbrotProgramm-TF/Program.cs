@@ -31,6 +31,7 @@ namespace MandelbrotProgramm_TF
             zoomTekst.Text = " Zoomwaarde: ";
             zoomTekst.ForeColor = Color.White;
             zoomTekst.BackColor = BackColorFour;
+            zoomTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
 
             TextBox xInvoer = new TextBox();
@@ -45,6 +46,7 @@ namespace MandelbrotProgramm_TF
             xInvoerTekst.Text = " X invoer: ";
             xInvoerTekst.ForeColor = Color.White;
             xInvoerTekst.BackColor = BackColorFour;
+            xInvoerTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
             TextBox yInvoer = new TextBox();
             scherm.Controls.Add(yInvoer);
@@ -59,10 +61,26 @@ namespace MandelbrotProgramm_TF
             yInvoerTekst.Text = " Y invoer: ";
             yInvoerTekst.ForeColor = Color.White;
             yInvoerTekst.BackColor = BackColorFour;
+            yInvoerTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+
+            TextBox invoerMax = new TextBox();
+            scherm.Controls.Add(invoerMax);
+            invoerMax.Location = new Point(100, 180);
+            invoerMax.Size = new Size(100, 50);
+
+
+            Label invoerMaxTekst = new Label();
+            scherm.Controls.Add(invoerMaxTekst);
+            invoerMaxTekst.Location = new Point(0, 180);
+            invoerMaxTekst.Size = new Size(90, 20);
+            invoerMaxTekst.Text = " Max aantal: ";
+            invoerMaxTekst.ForeColor = Color.White;
+            invoerMaxTekst.BackColor = BackColorFour;
+            invoerMaxTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
             Button go = new Button();
             scherm.Controls.Add(go);
-            go.Location = new Point(0, 180);
+            go.Location = new Point(0, 220);
             go.Size = new Size(100, 30);
             go.BackColor = Color.LightGray;
             go.Text = "Go!";
@@ -71,7 +89,7 @@ namespace MandelbrotProgramm_TF
 
             Button reset = new Button();
             scherm.Controls.Add(reset);
-            reset.Location = new Point(100, 180);
+            reset.Location = new Point(100, 220);
             reset.Size = new Size(100, 30);
             reset.BackColor = Color.LightGray;
             reset.Text = "Reset!";
@@ -107,16 +125,16 @@ namespace MandelbrotProgramm_TF
 
             void Mandelbrot (object sender , EventArgs e)
             {
-                double scale = double.Parse(zoomInvoer.Text);
+               double scale = double.Parse(zoomInvoer.Text);
                 //double scale = 1;
-                double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-                double vensterY = double.Parse(yInvoer.Text) / 300;
+               double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+               double vensterY = double.Parse(yInvoer.Text) / 300;
 
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
                 mandlebrotOutput.Image = plaatje;
 
                 //begin aan muisklik dingen
-                void mouseClick(object sender, MouseEventArgs mouse)
+                 void mouseClick(object sender, MouseEventArgs mouse)
                 {
                     double scale = 1;
                     int hereX = mouse.X;
@@ -134,10 +152,14 @@ namespace MandelbrotProgramm_TF
                         scale = scale + 0.1;
                     }
 
+                    Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+                    mandlebrotOutput.Image = plaatje;
+
                 }
 
-                mandlebrotOutput.MouseClick += mouseClick;
+                scherm.MouseClick += mouseClick;
 
+                int maxNum = int.Parse(invoerMax.Text);
 
 
 
@@ -153,7 +175,8 @@ namespace MandelbrotProgramm_TF
                         //startwaardes van de formule
                         double a = 0;
                         double b = 0;
-                        int maxNum = 100;
+                        //int maxNum = 100;
+                        
 
                         //Mandelgetal uitrekenen per pixel
                         int Mandelgetal = 0;
@@ -193,8 +216,9 @@ namespace MandelbrotProgramm_TF
                     zoomInvoer.Text = string.Empty;
                     xInvoer.Text = string.Empty;
                     yInvoer.Text = string.Empty;
+                    invoerMax.Text = string.Empty;
                     // er moet hier nog iets van een plaatje reset komen
-                    
+
 
                 }
 
@@ -204,7 +228,7 @@ namespace MandelbrotProgramm_TF
             }
           
             go.Click += Mandelbrot;
-
+            
             Application.Run(scherm);
         }
     }
