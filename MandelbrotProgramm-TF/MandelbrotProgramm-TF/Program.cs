@@ -14,15 +14,6 @@ namespace MandelbrotProgramm_TF
             int plaatjex = 600;
             int plaatjey = 600;
 
-            //mandlebrot ouput screen
-            /*Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
-            Label mandlebrotOutput = new Label();
-            scherm.Controls.Add(mandlebrotOutput);
-            mandlebrotOutput.Size = new Size(plaatje.Width, plaatje.Height);
-            mandlebrotOutput.Location = new Point(700, 100);
-            mandlebrotOutput.Image = plaatje;
-            mandlebrotOutput.BackColor = Color.LightGray; */
-
             TextBox zoomInvoer = new TextBox();
             scherm.Controls.Add(zoomInvoer);
             zoomInvoer.Location = new Point(120, 60);
@@ -79,9 +70,6 @@ namespace MandelbrotProgramm_TF
                 double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
                 double vensterY = double.Parse(yInvoer.Text) / 300;
 
-
-
-
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
                 Label mandlebrotOutput = new Label();
                 scherm.Controls.Add(mandlebrotOutput);
@@ -90,7 +78,28 @@ namespace MandelbrotProgramm_TF
                 mandlebrotOutput.Image = plaatje;
                 mandlebrotOutput.BackColor = Color.LightGray;
 
+                //begin aan muisklik dingen
+                void mouseClick(object sender, MouseEventArgs mouse)
+                {
+                    double scale = 1;
+                    int hereX = mouse.X;
+                    int hereY = mouse.Y;
+                    double vensterX = mouse.X / 300;
+                    double vensterY = mouse.Y / 300;
 
+                    if (mouse.Button == MouseButtons.Left)
+                    {
+                        scale = scale - 0.1; ;
+                    }
+
+                    else if (mouse.Button == MouseButtons.Right)
+                    {
+                        scale = scale + 0.1;
+                    }
+
+                }
+
+                mandlebrotOutput.MouseClick += mouseClick;
 
 
 
@@ -156,40 +165,8 @@ namespace MandelbrotProgramm_TF
 
 
             }
-            /*
-            void mouseClick(object sender, MouseEventArgs mouse)
-            {
-                int zoomFactor = 2; // moet een knop voor gemaakt worden
-                int hereX = mouse.X;
-                int hereY = mouse.Y;
-                int zoomWidth = plaatje.Width * zoomFactor;
-                int zoomHeight = plaatje.Height * zoomFactor;
-                int zoomX = hereX - (zoomWidth / 2);
-                int zoomY = hereX - (zoomHeight / 2);
-
-                Point zoomLocation = new Point(zoomX, zoomY);
-               // plaatje.Location = zoomLocation;
-              
-                mandlebrotOutput.Size = new Size(zoomWidth, zoomHeight);
-
-
-            }
-            */
-            // mandlebrotOutput.MouseClick += mouseClick;
-            //go.Click += calculateButtons;
-
-
-
-
-
-
+          
             go.Click += Mandelbrot;
-
-
-
-
-
-
 
             Application.Run(scherm);
         }
