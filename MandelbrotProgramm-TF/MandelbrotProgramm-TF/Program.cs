@@ -1,9 +1,15 @@
+using System.Drawing.Text;
+
 namespace MandelbrotProgramm_TF
 {
     internal static class Program
     {
        static void Main()
         {   
+            // deze build werkt nog niet als je hem gaat runnen, als je hem
+
+
+
 
             //deffineren scherm
             Form scherm = new Form();
@@ -14,64 +20,120 @@ namespace MandelbrotProgramm_TF
             int plaatjey = 600;
 
             //mandlebrot ouput screen
-            Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+            /*Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
             Label mandlebrotOutput = new Label();
             scherm.Controls.Add(mandlebrotOutput);
             mandlebrotOutput.Size = new Size(plaatje.Width, plaatje.Height);
             mandlebrotOutput.Location = new Point(700, 100);
             mandlebrotOutput.Image = plaatje;
-            mandlebrotOutput.BackColor = Color.LightGray;
-            Button zoomButton = new Button();
-            scherm.Controls.Add(zoomButton);
-            zoomButton.Location = new Point(10, 10);
-            zoomButton.Size = new Size(50, 20);
-            zoomButton.BackColor = Color.LightGray;
+            mandlebrotOutput.BackColor = Color.LightGray; */
+
+            TextBox zoomInvoer = new TextBox();
+            scherm.Controls.Add(zoomInvoer);
+            zoomInvoer.Location = new Point(120, 60);
+            zoomInvoer.Size = new Size(90, 50);
+
+            Label zoomTekst = new Label();
+            scherm.Controls.Add(zoomTekst);
+            zoomTekst.Location = new Point(10, 60);
+            zoomTekst.Size = new Size(90, 20);
+            zoomTekst.Text = "Zoomwaarde: ";
+
+            TextBox xInvoer = new TextBox();
+            scherm.Controls.Add(xInvoer);
+            xInvoer.Location = new Point(120, 100);
+            xInvoer.Size = new Size(90, 50);
+
+            Label xInvoerTekst = new Label();
+            scherm.Controls.Add(xInvoerTekst);
+            xInvoerTekst.Location = new Point(10, 100);
+            xInvoerTekst.Size = new Size(90, 50);
+            xInvoerTekst.Text = "X invoer: ";
+
+            TextBox yInvoer = new TextBox();
+            scherm.Controls.Add(yInvoer);
+            yInvoer.Location = new Point(120, 140);
+            yInvoer.Size = new Size(90, 50);
+
+            Label yInvoerTekst = new Label();
+            scherm.Controls.Add(yInvoerTekst);
+            yInvoerTekst.Location = new Point(10, 140);
+            yInvoerTekst.Size = new Size(90, 50);
+            yInvoerTekst.Text = "Y invoer: ";
+
+            Button go = new Button();
+            scherm.Controls.Add(go);
+            go.Location = new Point(10, 190);
+            go.Size = new Size(90, 20);
+            go.BackColor = Color.LightGray;
+            go.Text = "Go!";
+           
 
 
-
-            for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
+            void Mandelbrot (object sender , EventArgs e)
             {
-                for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
+                double scale = double.Parse(zoomInvoer.Text);
+                //double scale = 1;
+                double vensterX = 0.1 * double.Parse(xInvoer.Text); // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                double vensterY = 0.1 * double.Parse(yInvoer.Text);
+
+
+                Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+                Label mandlebrotOutput = new Label();
+                scherm.Controls.Add(mandlebrotOutput);
+                mandlebrotOutput.Size = new Size(plaatje.Width, plaatje.Height);
+                mandlebrotOutput.Location = new Point(700, 100);
+                mandlebrotOutput.Image = plaatje;
+                mandlebrotOutput.BackColor = Color.LightGray;
+
+
+
+                for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
                 {
-                    //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
-                    double x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (mandlebrotOutput.Width * 4));
-                    double y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (mandlebrotOutput.Height * 4));
-
-                    //startwaardes van de formule
-                    double a = 0;
-                    double b = 0;
-                    int maxNum = 100;
-
-                    //Mandelgetal uitrekenen per pixel
-                    int Mandelgetal = 0;
-                    for (int i = 1; i <= maxNum; i++)
+                    for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
                     {
-                        Mandelgetal++;
-                        double temporary = (double)((a * a) - (b * b)) + x;
-                        b = (double)(2 * a * b + y);
-                        a = temporary;
+                        //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
+                        double x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale) + vensterX);
+                        double y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (0.25 * mandlebrotOutput.Height / scale) + vensterY);
 
+                        //startwaardes van de formule
+                        double a = 0;
+                        double b = 0;
+                        int maxNum = 100;
 
-                        double afstand = Math.Sqrt(a * a + b * b);
-
-                        if (afstand > 2)
+                        //Mandelgetal uitrekenen per pixel
+                        int Mandelgetal = 0;
+                        for (int i = 1; i <= maxNum; i++)
                         {
-                            break;
-                        }
+                            Mandelgetal++;
+                            double temporary = (double)((a * a) - (b * b)) + x;
+                            b = (double)(2 * a * b + y);
+                            a = temporary;
 
-                    }
-                    //pixels kleuren op basis van het mandelgetal
-                    if (Mandelgetal % 2 == 0 || Mandelgetal >= maxNum)
-                    {
-                        plaatje.SetPixel(OutputX, OutputY, Color.Black);
-                    }
-                    else
-                    {
-                        plaatje.SetPixel(OutputX, OutputY, Color.White);
+
+                            double afstand = Math.Sqrt(a * a + b * b);
+
+                            if (afstand > 2)
+                            {
+                                break;
+                            }
+
+                        }
+                        //pixels kleuren op basis van het mandelgetal
+                        if (Mandelgetal % 2 == 0 || Mandelgetal >= maxNum)
+                        {
+                            plaatje.SetPixel(OutputX, OutputY, Color.Black);
+                        }
+                        else
+                        {
+                            plaatje.SetPixel(OutputX, OutputY, Color.White);
+                        }
                     }
                 }
-            }
 
+                mandlebrotOutput.Image = plaatje;   
+            }
+            /*
             void mouseClick(object sender, MouseEventArgs mouse)
             {
                 int zoomFactor = 2; // moet een knop voor gemaakt worden
@@ -83,14 +145,17 @@ namespace MandelbrotProgramm_TF
                 int zoomY = hereX - (zoomHeight / 2);
 
                 Point zoomLocation = new Point(zoomX, zoomY);
-                plaatje.Location = zoomLocation;
+               // plaatje.Location = zoomLocation;
               
                 mandlebrotOutput.Size = new Size(zoomWidth, zoomHeight);
-                
+
 
             }
+            */
+            // mandlebrotOutput.MouseClick += mouseClick;
+            //go.Click += calculateButtons;
+            go.Click += Mandelbrot;
 
-            mandlebrotOutput.MouseClick += mouseClick;
 
 
 
