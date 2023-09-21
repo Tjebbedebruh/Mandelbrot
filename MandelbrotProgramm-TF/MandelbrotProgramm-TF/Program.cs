@@ -136,7 +136,7 @@ namespace MandelbrotProgramm_TF
                 //begin aan muisklik dingen
                  void mouseClick(object sender, MouseEventArgs mouse)
                 {
-                    double scale = 1;
+                    
                     int hereX = mouse.X;
                     int hereY = mouse.Y;
                     double vensterX = mouse.X / 300;
@@ -152,14 +152,14 @@ namespace MandelbrotProgramm_TF
                         scale = scale + 0.1;
                     }
 
-                    Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
                     mandlebrotOutput.Image = plaatje;
 
                 }
 
                 scherm.MouseClick += mouseClick;
 
-                int maxNum = int.Parse(invoerMax.Text);
+                int maxNum = int.Parse(invoerMaxTekst.Text);
+                // int maxNum = 100;
 
 
 
@@ -213,12 +213,19 @@ namespace MandelbrotProgramm_TF
 
                 void ResetAction(object sender, EventArgs e)
                 {
+
+                    //plaatje zetten op standaar zoom en locatie
+                    zoomInvoer.Text = "1";
+                    xInvoer.Text = "0";
+                    yInvoer.Text = "0";
+                    invoerMaxTekst.Text = "0";
+                    Mandelbrot(sender, e);
+
+                    //tekstvakjes leegmaken
                     zoomInvoer.Text = string.Empty;
                     xInvoer.Text = string.Empty;
                     yInvoer.Text = string.Empty;
                     invoerMax.Text = string.Empty;
-                    // er moet hier nog iets van een plaatje reset komen
-
 
                 }
 
