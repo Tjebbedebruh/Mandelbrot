@@ -1,4 +1,5 @@
 using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MandelbrotProgramm_TF
 {
@@ -10,6 +11,7 @@ namespace MandelbrotProgramm_TF
             Form scherm = new Form();
             scherm.Text = "MandelbrotTF";
             scherm.ClientSize = new Size(1400, 800);
+            scherm.BackColor = Color.Blue;
 
             Color BackColor = Color.FromArgb(27, 27, 27);
             scherm.BackColor = BackColor;
@@ -31,7 +33,7 @@ namespace MandelbrotProgramm_TF
             zoomTekst.Text = " Zoomwaarde: ";
             zoomTekst.ForeColor = Color.White;
             zoomTekst.BackColor = BackColorFour;
-            zoomTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            zoomTekst.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
 
 
             TextBox xInvoer = new TextBox();
@@ -122,10 +124,15 @@ namespace MandelbrotProgramm_TF
             mandlebrotOutput.Size = new Size(plaatjex, plaatjey);
             mandlebrotOutput.Location = new Point(700, 100);
             mandlebrotOutput.BackColor = Color.LightGray;
-
+            
+            double scale = 1;
+            double x = 0;
+            double y = 0;
+            int maxNum = 100;
+            
             void Mandelbrot (object sender , EventArgs e)
             {
-               double scale = double.Parse(zoomInvoer.Text);
+               scale = double.Parse(zoomInvoer.Text);
                 //double scale = 1;
                double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
                double vensterY = double.Parse(yInvoer.Text) / 300;
@@ -133,35 +140,7 @@ namespace MandelbrotProgramm_TF
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
                 mandlebrotOutput.Image = plaatje;
 
-                //begin aan muisklik dingen
-                 void mouseClick(object sender, MouseEventArgs mouse)
-                {
-                    
-                    int hereX = mouse.X;
-                    int hereY = mouse.Y;
-                    double vensterX = mouse.X / 300;
-                    double vensterY = mouse.Y / 300;
-
-                    if (mouse.Button == MouseButtons.Left)
-                    {
-                        scale = scale - 0.1; ;
-                    }
-
-                    else if (mouse.Button == MouseButtons.Right)
-                    {
-                        scale = scale + 0.1;
-                    }
-
-                    mandlebrotOutput.Image = plaatje;
-
-                }
-
-                scherm.MouseClick += mouseClick;
-
-                int maxNum = int.Parse(invoerMax.Text);
-                // int maxNum = 100;
-
-
+                
 
 
                 for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
@@ -169,8 +148,8 @@ namespace MandelbrotProgramm_TF
                     for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
                     {
                         //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
-                        double x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale) + vensterX);
-                        double y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (0.25 * mandlebrotOutput.Height / scale) + vensterY);
+                        x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale) + vensterX);
+                        y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (0.25 * mandlebrotOutput.Height / scale) + vensterY);
 
                         //startwaardes van de formule
                         double a = 0;
@@ -218,7 +197,7 @@ namespace MandelbrotProgramm_TF
                     zoomInvoer.Text = "1";
                     xInvoer.Text = "0";
                     yInvoer.Text = "0";
-                    invoerMax.Text = "0";
+                    invoerMax.Text = "100";
                     Mandelbrot(sender, e);
 
                     //tekstvakjes leegmaken
@@ -232,8 +211,44 @@ namespace MandelbrotProgramm_TF
                 reset.Click += ResetAction;
 
 
+
+                //begin aan muisklik dingen
+                void mouseClick(object sender, MouseEventArgs mouse)
+                {
+                    //even voor de feedback om te kijken of ie wel klikt
+                    Random r = new Random();
+                    scherm.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), 0);
+
+                    //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
+                    x = (mouse.X - 700 - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale); 
+                    y = (mouse.Y - 100 - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale);
+
+                    //inzoomen
+                    if (mouse.Button == MouseButtons.Left)
+                    {
+                        scale = scale - 1; ;
+                    }
+                    //uitzoomen
+                    else if (mouse.Button == MouseButtons.Right)
+                    {
+                        scale = scale + 1;
+                    }
+
+                    mandlebrotOutput.Image = plaatje;
+
+                    //mandelbrotsetoutput opnieuw genereren voor de nieuwe waardes
+                    Mandelbrot(sender, e);
+
+                }
+                mandlebrotOutput.MouseClick += mouseClick;
             }
-          
+             
+            
+
+            
+
+            
+
             go.Click += Mandelbrot;
             
             Application.Run(scherm);
