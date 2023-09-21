@@ -130,8 +130,9 @@ namespace MandelbrotProgramm_TF
                         }
                     }
                 }
+                //scherm.Invalidate();
 
-                mandlebrotOutput.Image = plaatje;   
+                // mandlebrotOutput.Image = plaatje;   
             }
             /*
             void mouseClick(object sender, MouseEventArgs mouse)
