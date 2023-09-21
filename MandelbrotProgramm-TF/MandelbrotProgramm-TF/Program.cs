@@ -6,11 +6,6 @@ namespace MandelbrotProgramm_TF
     {
        static void Main()
         {   
-            // deze build werkt nog niet als je hem gaat runnen, als je hem
-
-
-
-
             //deffineren scherm
             Form scherm = new Form();
             scherm.Text = "MandelbrotTF";
@@ -67,7 +62,14 @@ namespace MandelbrotProgramm_TF
             go.Size = new Size(90, 20);
             go.BackColor = Color.LightGray;
             go.Text = "Go!";
-           
+
+            Button reset = new Button();
+            scherm.Controls.Add(reset);
+            reset.Location = new Point(110, 190);
+            reset.Size = new Size(90, 20);
+            reset.BackColor = Color.LightGray;
+            reset.Text = "Reset!";
+
 
 
             void Mandelbrot (object sender , EventArgs e)
@@ -78,6 +80,8 @@ namespace MandelbrotProgramm_TF
                 double vensterY = double.Parse(yInvoer.Text) / 300;
 
 
+
+
                 Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
                 Label mandlebrotOutput = new Label();
                 scherm.Controls.Add(mandlebrotOutput);
@@ -85,6 +89,10 @@ namespace MandelbrotProgramm_TF
                 mandlebrotOutput.Location = new Point(700, 100);
                 mandlebrotOutput.Image = plaatje;
                 mandlebrotOutput.BackColor = Color.LightGray;
+
+
+
+
 
 
 
@@ -128,11 +136,25 @@ namespace MandelbrotProgramm_TF
                         {
                             plaatje.SetPixel(OutputX, OutputY, Color.White);
                         }
+
+
+
                     }
                 }
-                //scherm.Invalidate();
 
-                // mandlebrotOutput.Image = plaatje;   
+                void ResetAction(object sender, EventArgs e)
+                {
+                    zoomInvoer.Text = string.Empty;
+                    xInvoer.Text = string.Empty;
+                    yInvoer.Text = string.Empty;
+                    // er moet hier nog iets van een plaatje reset komen
+                    
+
+                }
+
+                reset.Click += ResetAction;
+
+
             }
             /*
             void mouseClick(object sender, MouseEventArgs mouse)
@@ -155,7 +177,16 @@ namespace MandelbrotProgramm_TF
             */
             // mandlebrotOutput.MouseClick += mouseClick;
             //go.Click += calculateButtons;
+
+
+
+
+
+
             go.Click += Mandelbrot;
+
+
+
 
 
 
