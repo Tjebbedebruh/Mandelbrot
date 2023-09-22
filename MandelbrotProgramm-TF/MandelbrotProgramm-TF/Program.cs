@@ -271,7 +271,7 @@ namespace MandelbrotProgramm_TF
                 hierX += (mouse.X - 300) * 0.0033333 / deler;
                 hierY += (mouse.Y - 300) * 0.0033333 / deler;
 
-                deler = deler * 2;
+                deler *= 2;
 
                 Debug.WriteLine(mouse.X);
                 Debug.WriteLine(mouse.Y);
