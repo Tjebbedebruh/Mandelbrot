@@ -134,7 +134,9 @@ namespace MandelbrotProgramm_TF
             double y = 0;
             int maxNum = 100;
 
-            
+            double hierX = 0;
+            double hierY = 0;
+            int deler = 1;
 
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
             Color rgbColor;
@@ -264,10 +266,12 @@ namespace MandelbrotProgramm_TF
                 }
                 //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
             
- 
+                
 
-                double hierX = (mouse.X - 300) * 0.0033333;
-                double hierY =  (mouse.Y - 300) * 0.0033333;
+                hierX += (mouse.X - 300) * 0.0033333 / deler;
+                hierY += (mouse.Y - 300) * 0.0033333 / deler;
+
+                deler = deler * 2;
 
                 Debug.WriteLine(mouse.X);
                 Debug.WriteLine(mouse.Y);
@@ -300,6 +304,9 @@ namespace MandelbrotProgramm_TF
                 yInvoer.Text = string.Empty;
                 invoerMax.Text = string.Empty;
 
+                hierX = 0;
+                hierY = 0;
+                deler = 1;
             }
 
             
