@@ -119,17 +119,24 @@ namespace MandelbrotProgramm_TF
             Color BackColorTwo = Color.FromArgb(34, 34, 34);
             ColorFill.BackColor = BackColorTwo;
 
-            Label mandlebrotOutput = new Label();
-            scherm.Controls.Add(mandlebrotOutput);
-            mandlebrotOutput.Size = new Size(plaatjex, plaatjey);
-            mandlebrotOutput.Location = new Point(700, 100);
-            mandlebrotOutput.BackColor = Color.LightGray;
+            Label mandelbrotOutput = new Label();
+            scherm.Controls.Add(mandelbrotOutput);
+            mandelbrotOutput.Size = new Size(plaatjex, plaatjey);
+            mandelbrotOutput.Location = new Point(700, 100);
+            mandelbrotOutput.BackColor = Color.LightGray;
             
             double scale = 1;
             double x = 0;
             double y = 0;
             int maxNum = 100;
-            
+
+            Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+
+
+
+
+
+
             void Mandelbrot (object sender , EventArgs e)
             {
                scale = double.Parse(zoomInvoer.Text);
@@ -137,19 +144,19 @@ namespace MandelbrotProgramm_TF
                double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
                double vensterY = double.Parse(yInvoer.Text) / 300;
 
-                Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
-                mandlebrotOutput.Image = plaatje;
-
-                
+               
+               
 
 
-                for (int OutputX = 0; OutputX < mandlebrotOutput.Width; OutputX++)
+
+
+                for (int OutputX = 0; OutputX < mandelbrotOutput.Width; OutputX++)
                 {
-                    for (int OutputY = 0; OutputY < mandlebrotOutput.Height; OutputY++)
+                    for (int OutputY = 0; OutputY < mandelbrotOutput.Height; OutputY++)
                     {
                         //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
-                        x = ((double)(OutputX - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale) + vensterX);
-                        y = ((double)(OutputY - mandlebrotOutput.Height / 2) / (0.25 * mandlebrotOutput.Height / scale) + vensterY);
+                        x = ((double)(OutputX - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale) + vensterX);
+                        y = ((double)(OutputY - mandelbrotOutput.Height / 2) / (0.25 * mandelbrotOutput.Height / scale) + vensterY);
 
                         //startwaardes van de formule
                         double a = 0;
@@ -185,62 +192,48 @@ namespace MandelbrotProgramm_TF
                             plaatje.SetPixel(OutputX, OutputY, Color.White);
                         }
 
+                        
 
 
                     }
                 }
 
-                void ResetAction(object sender, EventArgs e)
-                {
+                mandelbrotOutput.Image = plaatje;
 
-                    //plaatje zetten op standaar zoom en locatie
-                    zoomInvoer.Text = "1";
-                    xInvoer.Text = "0";
-                    yInvoer.Text = "0";
-                    invoerMax.Text = "100";
-                    Mandelbrot(sender, e);
-
-                    //tekstvakjes leegmaken
-                    zoomInvoer.Text = string.Empty;
-                    xInvoer.Text = string.Empty;
-                    yInvoer.Text = string.Empty;
-                    invoerMax.Text = string.Empty;
-
-                }
-
-                reset.Click += ResetAction;
-
+                
 
 
                 //begin aan muisklik dingen
                 void mouseClick(object sender, MouseEventArgs mouse)
                 {
+                    
                     //even voor de feedback om te kijken of ie wel klikt
                     Random r = new Random();
                     scherm.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), 0);
 
                     //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
-                    x = (mouse.X - 700 - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale); 
-                    y = (mouse.Y - 100 - mandlebrotOutput.Width / 2) / (0.25 * mandlebrotOutput.Width / scale);
+                    x = (mouse.X - 700 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale); 
+                    y = (mouse.Y - 100 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
 
                     //inzoomen
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        scale = scale - 1; ;
+                        scale = scale - 0.1; ;
                     }
                     //uitzoomen
                     else if (mouse.Button == MouseButtons.Right)
                     {
-                        scale = scale + 1;
+                        scale = scale + 0.1;
                     }
 
-                    mandlebrotOutput.Image = plaatje;
-
-                    //mandelbrotsetoutput opnieuw genereren voor de nieuwe waardes
                     Mandelbrot(sender, e);
+                    mandelbrotOutput.Image = plaatje;
+                    //mandelbrotOutput.Invalidate();
+                    //mandelbrotsetoutput opnieuw genereren voor de nieuwe waardes
+                    
 
                 }
-                mandlebrotOutput.MouseClick += mouseClick;
+                mandelbrotOutput.MouseClick += mouseClick;
             }
              
             
