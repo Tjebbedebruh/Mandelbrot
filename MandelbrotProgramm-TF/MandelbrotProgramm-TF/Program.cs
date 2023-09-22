@@ -132,24 +132,8 @@ namespace MandelbrotProgramm_TF
 
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
 
-
-
-
-
-
-            void Mandelbrot (object sender , EventArgs e)
+            void teken(double vensterX, double vensterY)
             {
-               scale = double.Parse(zoomInvoer.Text);
-                //double scale = 1;
-               double vensterX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-               double vensterY = double.Parse(yInvoer.Text) / 300;
-
-               
-               
-
-
-
-
                 for (int OutputX = 0; OutputX < mandelbrotOutput.Width; OutputX++)
                 {
                     for (int OutputY = 0; OutputY < mandelbrotOutput.Height; OutputY++)
@@ -162,7 +146,7 @@ namespace MandelbrotProgramm_TF
                         double a = 0;
                         double b = 0;
                         //int maxNum = 100;
-                        
+
 
                         //Mandelgetal uitrekenen per pixel
                         int Mandelgetal = 0;
@@ -192,58 +176,82 @@ namespace MandelbrotProgramm_TF
                             plaatje.SetPixel(OutputX, OutputY, Color.White);
                         }
 
-                        
+                        mandelbrotOutput.Image = plaatje;
+                        mandelbrotOutput.Invalidate();
 
 
                     }
-                }
-
-                mandelbrotOutput.Image = plaatje;
-
-                
-
-
-                //begin aan muisklik dingen
-                void mouseClick(object sender, MouseEventArgs mouse)
-                {
-                    
-                    //even voor de feedback om te kijken of ie wel klikt
-                    Random r = new Random();
-                    scherm.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), 0);
-
-                    //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
-                    x = (mouse.X - 700 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale); 
-                    y = (mouse.Y - 100 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
-
-                    //inzoomen
-                    if (mouse.Button == MouseButtons.Left)
-                    {
-                        scale = scale - 0.1; ;
-                    }
-                    //uitzoomen
-                    else if (mouse.Button == MouseButtons.Right)
-                    {
-                        scale = scale + 0.1;
-                    }
-
-                    Mandelbrot(sender, e);
-                    mandelbrotOutput.Image = plaatje;
-                    //mandelbrotOutput.Invalidate();
-                    //mandelbrotsetoutput opnieuw genereren voor de nieuwe waardes
-                    
 
                 }
-                mandelbrotOutput.MouseClick += mouseClick;
             }
-             
-            
+
+
+
+            void berekenLocatie(object sender, EventArgs e)
+            {
+                scale = double.Parse(zoomInvoer.Text);
+                //double scale = 1;
+                double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                double venY = double.Parse(yInvoer.Text) / 300;
+                teken(venX, venY);
+            }
 
             
 
-            
 
-            go.Click += Mandelbrot;
             
+            
+            void mouseClick(object sender, MouseEventArgs mouse)
+            {
+
+                //even voor de feedback om te kijken of ie wel klikt
+                Random r = new Random();
+                scherm.BackColor = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), 0);
+
+                //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
+                x = (mouse.X - 700 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
+                y = (mouse.Y - 100 - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
+
+                //inzoomen
+                if (mouse.Button == MouseButtons.Left)
+                {
+                    scale = scale - 0.1; ;
+                }
+                //uitzoomen
+                else if (mouse.Button == MouseButtons.Right)
+                {
+                    scale = scale + 0.1;
+                }
+
+                teken(x, y);
+                
+                
+              
+            }
+            
+            void ResetAction(object sender, EventArgs e)
+            {
+
+                //plaatje zetten op standaar zoom en locatie
+                zoomInvoer.Text = "1";
+                xInvoer.Text = "0";
+                yInvoer.Text = "0";
+                invoerMax.Text = "100";
+                teken(x, y);
+
+                //tekstvakjes leegmaken
+                zoomInvoer.Text = string.Empty;
+                xInvoer.Text = string.Empty;
+                yInvoer.Text = string.Empty;
+                invoerMax.Text = string.Empty;
+
+            }
+
+            
+            reset.Click += ResetAction;
+            mandelbrotOutput.MouseClick += mouseClick;
+            go.Click += berekenLocatie;
+
             Application.Run(scherm);
         }
     }
