@@ -138,7 +138,7 @@ namespace MandelbrotProgramm_TF
 
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
             Color rgbColor;
-            Color[] colorPalette = new Color[]
+            Color[] blueColorPalette = new Color[]
             {
                 Color.FromArgb(1,31,71),
                 Color.FromArgb(3,4,94),
@@ -218,7 +218,7 @@ namespace MandelbrotProgramm_TF
 
                         else
                         {
-                            plaatje.SetPixel(OutputX, OutputY, colorPalette[Mandelgetal % colorPalette.Length]);
+                            plaatje.SetPixel(OutputX, OutputY, blueColorPalette[Mandelgetal % blueColorPalette.Length]);
                         }
 
 
