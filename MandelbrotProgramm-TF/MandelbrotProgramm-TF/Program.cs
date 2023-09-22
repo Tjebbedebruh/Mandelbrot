@@ -129,16 +129,20 @@ namespace MandelbrotProgramm_TF
             mandelbrotOutput.Location = new Point(700, 100);
             mandelbrotOutput.BackColor = Color.LightGray;
             
+            //variablenen voor mandelbrotset maken
             double scale = 1;
             double x = 0;
             double y = 0;
             int maxNum = 100;
 
+            //variabelen voor inzoomen
             double hierX = 0;
             double hierY = 0;
             int deler = 1;
 
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+
+            //standaar kleuren voor mandelbrotset
             Color rgbColor;
             Color[] blueColorPalette = new Color[]
             {
@@ -304,12 +308,13 @@ namespace MandelbrotProgramm_TF
                 yInvoer.Text = string.Empty;
                 invoerMax.Text = string.Empty;
 
+                //zoomvariabelen resetten
                 hierX = 0;
                 hierY = 0;
                 deler = 1;
             }
 
-            
+            //eventhandlers
             reset.Click += ResetAction;
             mandelbrotOutput.MouseClick += mouseClick;
             go.Click += berekenLocatie;
