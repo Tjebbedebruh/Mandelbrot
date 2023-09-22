@@ -1,6 +1,9 @@
 using System.Diagnostics;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
+using System.Drawing.Imaging;
+using System.Numerics;
+using System.Drawing.Drawing2D;
 
 namespace MandelbrotProgramm_TF
 {
@@ -131,7 +134,30 @@ namespace MandelbrotProgramm_TF
             double y = 0;
             int maxNum = 100;
 
+            
+
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+            Color rgbColor;
+            Color[] colorPalette = new Color[]
+            {
+                Color.FromArgb(1,31,71),
+                Color.FromArgb(3,4,94),
+                Color.FromArgb(0,74,133),
+                Color.FromArgb(0,97,158),
+                Color.FromArgb(2,62,138),
+                Color.FromArgb(0,125,179),
+                Color.FromArgb(0,119,182),
+                Color.FromArgb(0,150,199),
+                Color.FromArgb(0,180,216),
+                Color.FromArgb(72,202,228),
+                Color.FromArgb(144,224,239),
+                Color.FromArgb(173, 232, 244),
+                Color.FromArgb(202, 240, 248),
+                Color.FromArgb(188,226,240),
+                Color.FromArgb(218,236,248),
+            };
+
+
 
             void teken(double vensterX, double vensterY)
             {
@@ -150,6 +176,7 @@ namespace MandelbrotProgramm_TF
                         double b = 0;
                         //int maxNum = 100;
 
+                    
 
                         //Mandelgetal uitrekenen per pixel
                         int Mandelgetal = 0;
@@ -170,14 +197,30 @@ namespace MandelbrotProgramm_TF
 
                         }
                         //pixels kleuren op basis van het mandelgetal
+
+
+                        /*
                         if (Mandelgetal % 2 == 0 || Mandelgetal >= maxNum)
                         {
+
                             plaatje.SetPixel(OutputX, OutputY, Color.Black);
                         }
                         else
                         {
                             plaatje.SetPixel(OutputX, OutputY, Color.White);
                         }
+                        */
+
+                        if (Mandelgetal >= maxNum)
+                        {
+                            plaatje.SetPixel(OutputX, OutputY, Color.Black);
+                        }
+
+                        else
+                        {
+                            plaatje.SetPixel(OutputX, OutputY, colorPalette[Mandelgetal % colorPalette.Length]);
+                        }
+
 
                         mandelbrotOutput.Image = plaatje;
                         mandelbrotOutput.Invalidate();
