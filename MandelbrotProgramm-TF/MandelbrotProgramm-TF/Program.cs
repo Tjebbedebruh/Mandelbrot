@@ -143,6 +143,8 @@ namespace MandelbrotProgramm_TF
                         x = ((double)(OutputX - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale) + vensterX);
                         y = ((double)(OutputY - mandelbrotOutput.Height / 2) / (0.25 * mandelbrotOutput.Height / scale) + vensterY);
 
+                      
+
                         //startwaardes van de formule
                         double a = 0;
                         double b = 0;
@@ -205,31 +207,40 @@ namespace MandelbrotProgramm_TF
             void mouseClick(object sender, MouseEventArgs mouse)
             {
 
-                
                 //inzoomen
                 if (mouse.Button == MouseButtons.Left)
                 {
-                    scale = scale - 0.1; ;
+                    scale = scale / 2;
+
                 }
                 //uitzoomen
                 else if (mouse.Button == MouseButtons.Right)
                 {
-                    scale = scale + 0.1;
+                    scale = scale * 2;
+
                 }
-
                 //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
-                x = (mouse.X - 700);
-                y = (mouse.Y - 400);
+            
+ 
 
+                double hierX = (mouse.X - 300) * 0.0033333;
+                double hierY =  (mouse.Y - 300) * 0.0033333;
 
                 Debug.WriteLine(mouse.X);
                 Debug.WriteLine(mouse.Y);
-                teken(0, 0);
-                
-                
-              
+                Debug.WriteLine(hierX);
+                Debug.WriteLine(hierY);
+
+                teken(hierX, hierY);
+                //x = ((mouse.X) - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
+                //y = ((mouse.Y) - mandelbrotOutput.Height / 2) / (0.25 * mandelbrotOutput.Height / scale);
+
+                //teken(x, y);
+
+
+
             }
-            
+
             void ResetAction(object sender, EventArgs e)
             {
 
