@@ -8,6 +8,14 @@ using System.Drawing.Drawing2D;
 namespace MandelbrotProgramm_TF
 {
     internal static class Program
+
+        // de knoppen werken nog niet naar rechts maar dat gaat gefixt worden, ik moet nog even uitvogelen hoe ik kleurschema kan assignen aan het goeie kleurschema kleurtje. 
+
+
+
+
+
+
     {
        static void Main()
         {   
@@ -84,9 +92,126 @@ namespace MandelbrotProgramm_TF
             invoerMaxTekst.BackColor = BackColorFour;
             invoerMaxTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
+            //standaar kleuren voor mandelbrotset
+            Color rgbColor;
+            Color[] blueishColorPalette = new Color[]
+            {
+                Color.FromArgb(1,31,71),
+                Color.FromArgb(3,4,94),
+                Color.FromArgb(0,74,133),
+                Color.FromArgb(0,97,158),
+                Color.FromArgb(2,62,138),
+                Color.FromArgb(0,125,179),
+                Color.FromArgb(0,119,182),
+                Color.FromArgb(0,150,199),
+                Color.FromArgb(0,180,216),
+                Color.FromArgb(72,202,228),
+                Color.FromArgb(144,224,239),
+                Color.FromArgb(173, 232, 244),
+                Color.FromArgb(202, 240, 248),
+                Color.FromArgb(188,226,240),
+                Color.FromArgb(218,236,248),
+            };
+
+            Color[] redishColorPalette = new Color[]
+            {
+                Color.FromArgb(3,7,30),
+                Color.FromArgb(55,6,23),
+                Color.FromArgb(106,4,15),
+                Color.FromArgb(157,2,8),
+                Color.FromArgb(208,0,0),
+                Color.FromArgb(220,47,2),
+                Color.FromArgb(232,93,4),
+                Color.FromArgb(244,140,6),
+                Color.FromArgb(250,163,7),
+                Color.FromArgb(255,186,8),
+
+            };
+
+            Color[] greenishColorPalette = new Color[]
+            {
+                Color.FromArgb(0,75,35),
+                Color.FromArgb(0,100,0),
+                Color.FromArgb(0,107,0),
+                Color.FromArgb(0,114,0),
+                Color.FromArgb(0,128,0),
+                Color.FromArgb(56,176,0),
+                Color.FromArgb(112,224,0),
+                Color.FromArgb(158,240,26),
+                Color.FromArgb(204,255,51),
+                Color.FromArgb(215,252,101),
+
+            };
+
+            //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+            int kleurSchemaKeuze;
+
+            Button kleurSchema = new Button();
+            scherm.Controls.Add(kleurSchema);
+            kleurSchema.Text = "Kleurschema";
+            kleurSchema.Location = new Point(100, 220);
+            kleurSchema.Size = new Size(100, 25);
+            kleurSchema.ForeColor = Color.White;
+            kleurSchema.BackColor = Color.SlateGray;
+
+
+
+            ContextMenuStrip kleurSchemaMenu = new ContextMenuStrip();
+            ToolStripMenuItem blauwSchemaKnop = new ToolStripMenuItem("Blauw");
+            ToolStripMenuItem roodSchemaKnop = new ToolStripMenuItem("Rood");
+            ToolStripMenuItem groenSchemaKnop = new ToolStripMenuItem("Groen");
+            kleurSchemaMenu.Items.Add(blauwSchemaKnop);
+            kleurSchemaMenu.Items.Add(roodSchemaKnop);
+            kleurSchemaMenu.Items.Add(groenSchemaKnop);
+
+
+            void kleurSchema_Click(object sender, EventArgs e)
+            {
+                kleurSchemaMenu.Show((Button)sender, new System.Drawing.Point(0, ((Button)sender).Height));
+            }
+
+            kleurSchema.Click += kleurSchema_Click;
+
+            void blauwSchemaKnop_Click(object sender, EventArgs e)
+            {
+
+                Color[] kleurSchemaKeuze = new Color[blueishColorPalette.Length];
+                Array.Copy(blueishColorPalette, kleurSchemaKeuze, blueishColorPalette.Length);
+            }
+
+            void roodSchemaKnop_Click(object sender, EventArgs e)
+            {
+
+                Color[] kleurSchemaKeuze = new Color[redishColorPalette.Length];
+                Array.Copy(redishColorPalette, kleurSchemaKeuze, redishColorPalette.Length);
+            }
+
+            void groenSchemaKnop_Click(object sender, EventArgs e)
+            {
+                Color[] kleurSchemaKeuze = new Color[greenishColorPalette.Length];
+                Array.Copy(greenishColorPalette, kleurSchemaKeuze, greenishColorPalette.Length);
+            }
+
+
+
+
+
+            Label kleurSchemaTekst = new Label();
+            scherm.Controls.Add(kleurSchemaTekst);
+            kleurSchemaTekst.Location = new Point(0, 220);
+            kleurSchemaTekst.Size = new Size(90, 20);
+            kleurSchemaTekst.Text = " Kleurschema: ";
+            kleurSchemaTekst.ForeColor = Color.White;
+            kleurSchemaTekst.BackColor = BackColorFour;
+            kleurSchemaTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+
+            //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
             Button go = new Button();
             scherm.Controls.Add(go);
-            go.Location = new Point(0, 220);
+            go.Location = new Point(0, 260);
             go.Size = new Size(100, 30);
             go.BackColor = Color.LightGray;
             go.Text = "Go!";
@@ -95,7 +220,7 @@ namespace MandelbrotProgramm_TF
 
             Button reset = new Button();
             scherm.Controls.Add(reset);
-            reset.Location = new Point(100, 220);
+            reset.Location = new Point(100, 260);
             reset.Size = new Size(100, 30);
             reset.BackColor = Color.LightGray;
             reset.Text = "Reset!";
@@ -142,26 +267,7 @@ namespace MandelbrotProgramm_TF
 
             Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
 
-            //standaar kleuren voor mandelbrotset
-            Color rgbColor;
-            Color[] blueColorPalette = new Color[]
-            {
-                Color.FromArgb(1,31,71),
-                Color.FromArgb(3,4,94),
-                Color.FromArgb(0,74,133),
-                Color.FromArgb(0,97,158),
-                Color.FromArgb(2,62,138),
-                Color.FromArgb(0,125,179),
-                Color.FromArgb(0,119,182),
-                Color.FromArgb(0,150,199),
-                Color.FromArgb(0,180,216),
-                Color.FromArgb(72,202,228),
-                Color.FromArgb(144,224,239),
-                Color.FromArgb(173, 232, 244),
-                Color.FromArgb(202, 240, 248),
-                Color.FromArgb(188,226,240),
-                Color.FromArgb(218,236,248),
-            };
+         
 
 
 
@@ -224,7 +330,7 @@ namespace MandelbrotProgramm_TF
 
                         else
                         {
-                            plaatje.SetPixel(OutputX, OutputY, blueColorPalette[Mandelgetal % blueColorPalette.Length]);
+                            plaatje.SetPixel(OutputX, OutputY, kleurSchemaKeuze[Mandelgetal % kleurSchemaKeuze.Length]);
                         }
 
 
