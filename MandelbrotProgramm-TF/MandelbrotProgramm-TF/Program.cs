@@ -419,7 +419,10 @@ namespace MandelbrotProgramm_TF
                 //double scale = 1;
                 double venX = -0.45900175759277345; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
                 double venY = -0.5803083244628907;
+                hierX = -0.45900175759277345;
+                hierY = -0.5803083244628907;
                 maxNum = 100;
+                deler = 512;
                 if (checkClick == false)
                 {
                     generalColorPalette = whiteColorPalette;
@@ -445,7 +448,10 @@ namespace MandelbrotProgramm_TF
                 //double scale = 1;
                 double venX = -0.553223634375;
                 double venY = -0.6338478281250001;
+                hierX = -0.553223634375;
+                hierY = -0.6338478281250001;
                 maxNum = 100;
+                deler = 64;
                 if (checkClick == false)
                 {
                     generalColorPalette = whiteColorPalette;
@@ -460,6 +466,15 @@ namespace MandelbrotProgramm_TF
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
 
+                /*
+                Debug.WriteLine(scale);
+                Debug.WriteLine(venX);
+                Debug.WriteLine(venY);
+                Debug.WriteLine(maxNum);
+                Debug.WriteLine(deler);
+                */
+
+
                 teken(venX, venY);
             }
             mandelbrotVoorbeeldTwee.Click += tekenVoorbeeldTwee;
@@ -470,7 +485,10 @@ namespace MandelbrotProgramm_TF
                 //double scale = 1;
                 double venX = 0.3580791014648437; 
                 double venY = -0.6382358050781248;
+                hierX = 0.3580791014648437;
+                hierY = -0.6382358050781248;
                 maxNum = 100;
+                deler = 2048;
                 if (checkClick == false)
                 {
                     generalColorPalette = whiteColorPalette;
@@ -495,10 +513,10 @@ namespace MandelbrotProgramm_TF
                 //double scale = 1;
                 double venX = -1.4467107931640626;
                 double venY = 9.765527343749922E-05;
-
-                double venX2 = 300 * -1.4467107931640626;
-                double venY2 = 300 * 9.765527343749922E-05;
+                hierX = -1.4467107931640626;
+                hierY = 9.765527343749922E-05;
                 maxNum = 100;
+                deler = 512;
                 if (checkClick == false)
                 {
                     generalColorPalette = whiteColorPalette;
@@ -567,8 +585,8 @@ namespace MandelbrotProgramm_TF
 
                 }
                 //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
-            
-                
+
+
 
                 hierX += (mouse.X - 300) * 0.0033333 / deler;
                 hierY += (mouse.Y - 300) * 0.0033333 / deler;
@@ -582,8 +600,8 @@ namespace MandelbrotProgramm_TF
                 
 
 
-                Debug.WriteLine(mouse.X);
-                Debug.WriteLine(mouse.Y);
+                //Debug.WriteLine(mouse.X);
+                //Debug.WriteLine(mouse.Y);
                 Debug.WriteLine(hierX);
                 Debug.WriteLine(hierY);
 
