@@ -4,6 +4,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Drawing.Imaging;
 using System.Numerics;
 using System.Drawing.Drawing2D;
+using System.Runtime.CompilerServices;
 
 namespace MandelbrotProgramm_TF
 {
@@ -43,7 +44,6 @@ namespace MandelbrotProgramm_TF
             zoomTekst.Text = " Zoomwaarde: ";
             zoomTekst.ForeColor = Color.White;
             zoomTekst.BackColor = BackColorTwo;
-            zoomTekst.Font = new Font("Century Gothic", 10F, FontStyle.Bold, GraphicsUnit.Point);
 
 
             TextBox xInvoer = new TextBox();
@@ -58,7 +58,6 @@ namespace MandelbrotProgramm_TF
             xInvoerTekst.Text = " X invoer: ";
             xInvoerTekst.ForeColor = Color.White;
             xInvoerTekst.BackColor = BackColorTwo;
-            xInvoerTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
             TextBox yInvoer = new TextBox();
             scherm.Controls.Add(yInvoer);
@@ -73,7 +72,6 @@ namespace MandelbrotProgramm_TF
             yInvoerTekst.Text = " Y invoer: ";
             yInvoerTekst.ForeColor = Color.White;
             yInvoerTekst.BackColor = BackColorTwo;
-            yInvoerTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
             TextBox invoerMax = new TextBox();
             scherm.Controls.Add(invoerMax);
@@ -88,7 +86,6 @@ namespace MandelbrotProgramm_TF
             invoerMaxTekst.Text = " Max aantal: ";
             invoerMaxTekst.ForeColor = Color.White;
             invoerMaxTekst.BackColor = BackColorTwo;
-            invoerMaxTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
 
             //standaar kleuren voor mandelbrotset
             Color rgbColor;
@@ -197,13 +194,8 @@ namespace MandelbrotProgramm_TF
 
             void blauwSchemaKnop_Click(object sender, EventArgs e)
             {
-
                 generalColorPalette = blueishColorPalette;
                 lastColorPalette = generalColorPalette;
-
-                //Color[] kleurSchemaKeuze = new Color[blueishColorPalette.Length];
-                //Array.Copy(blueishColorPalette, kleurSchemaKeuze, blueishColorPalette.Length);
-
             }
 
             blauwSchemaKnop.Click += blauwSchemaKnop_Click;
@@ -212,8 +204,6 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = redishColorPalette;
                 lastColorPalette = generalColorPalette;
-                //Color[] kleurSchemaKeuze = new Color[redishColorPalette.Length];
-                //Array.Copy(redishColorPalette, kleurSchemaKeuze, redishColorPalette.Length);
             }
 
             roodSchemaKnop.Click += roodSchemaKnop_Click;
@@ -222,8 +212,6 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = greenishColorPalette;
                 lastColorPalette = generalColorPalette;
-                //Color[] kleurSchemaKeuze = new Color[greenishColorPalette.Length];
-                //Array.Copy(greenishColorPalette, kleurSchemaKeuze, greenishColorPalette.Length);
             }
 
             groenSchemaKnop.Click += groenSchemaKnop_Click;
@@ -237,19 +225,6 @@ namespace MandelbrotProgramm_TF
             zwartwitSchemaKnop.Click += zwartwitSchemaKnop_Click;
             Debug.WriteLine(generalColorPalette);
 
-
-
-
-            /*
-            Label kleurSchemaTekst = new Label();
-            scherm.Controls.Add(kleurSchemaTekst);
-            kleurSchemaTekst.Location = new Point(0, 220);
-            kleurSchemaTekst.Size = new Size(90, 20);
-            kleurSchemaTekst.Text = " Kleurschema: ";
-            kleurSchemaTekst.ForeColor = Color.White;
-            kleurSchemaTekst.BackColor = BackColorFour;
-            kleurSchemaTekst.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            */
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
@@ -270,6 +245,45 @@ namespace MandelbrotProgramm_TF
             reset.Text = "Reset!";
             reset.ForeColor = Color.White;
             reset.FlatStyle = FlatStyle.Flat;
+
+            Label mandelbrotVoorbeeld = new Label();
+            
+            
+            mandelbrotVoorbeeld.Size = new Size(100, 100);
+            mandelbrotVoorbeeld.Location = new Point(50, 350);
+            Image mandelVoorbeeld = Image.FromFile("rszvoorbeeld1.png");
+            mandelbrotVoorbeeld.Image = mandelVoorbeeld;
+            scherm.Controls.Add(mandelbrotVoorbeeld);
+            Color BackColorFour = Color.FromArgb(44, 44, 44);
+            mandelbrotVoorbeeld.BackColor = BackColorFour;
+
+            Label mandelbrotVoorbeeldTwee = new Label();
+            scherm.Controls.Add(mandelbrotVoorbeeldTwee);
+            mandelbrotVoorbeeldTwee.Size = new Size(100, 100);
+            mandelbrotVoorbeeldTwee.Location = new Point(50, 460);
+            Image mandelVoorbeeld2 = Image.FromFile("rszvoorbeeld2.png");
+            mandelbrotVoorbeeldTwee.Image = mandelVoorbeeld2;
+
+            mandelbrotVoorbeeldTwee.BackColor = BackColorFour;
+
+            Label mandelbrotVoorbeeldDrie = new Label();
+            scherm.Controls.Add(mandelbrotVoorbeeldDrie);
+            mandelbrotVoorbeeldDrie.Size = new Size(100, 100);
+            mandelbrotVoorbeeldDrie.Location = new Point(50, 570);
+            Image mandelVoorbeeld3 = Image.FromFile("rszvoorbeeld3.png");
+            mandelbrotVoorbeeldDrie.Image = mandelVoorbeeld3;
+
+            mandelbrotVoorbeeldDrie.BackColor = BackColorFour;
+
+            Label mandelbrotVoorbeeldVier = new Label();
+            scherm.Controls.Add(mandelbrotVoorbeeldVier);
+            mandelbrotVoorbeeldVier.Size = new Size(100, 100);
+            mandelbrotVoorbeeldVier.Location = new Point(50, 680);
+            Image mandelVoorbeeld4 = Image.FromFile("rszvoorbeeld4.png");
+            mandelbrotVoorbeeldVier.Image = mandelVoorbeeld4;
+
+            mandelbrotVoorbeeldVier.BackColor = BackColorFour;
+
 
             Label ColorFill = new Label();
             scherm.Controls.Add(ColorFill);
@@ -297,9 +311,10 @@ namespace MandelbrotProgramm_TF
             mandelbrotOutput.Size = new Size(plaatjex, plaatjey);
             mandelbrotOutput.Location = new Point(300, 100);
             Color BackColorThree = Color.FromArgb(34, 34, 34);
-            ColorFill.BackColor = BackColorThree; 
+            ColorFill.BackColor = BackColorThree;
             mandelbrotOutput.BackColor = BackColorThree;
-            
+
+       
             //variablenen voor mandelbrotset maken
             double scale = 1;
             double x = 0;
@@ -410,6 +425,106 @@ namespace MandelbrotProgramm_TF
 
             }
 
+            void tekenVoorbeeldEen(object sender, EventArgs e)
+            {
+                scale = 0.001953125;
+                //double scale = 1;
+                double venX = -0.45900175759277345; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                double venY = -0.5803083244628907;
+                maxNum = 100;
+                if (checkClick == false)
+                {
+                    generalColorPalette = whiteColorPalette;
+                }
+                else
+                {
+                    generalColorPalette = lastColorPalette;
+                }
+
+                zoomInvoer.Text = (scale).ToString();
+                xInvoer.Text = (venX).ToString();
+                yInvoer.Text = (venY).ToString();
+                invoerMax.Text = (maxNum).ToString();
+
+
+                teken(venX, venY);
+            }
+            mandelbrotVoorbeeld.Click += tekenVoorbeeldEen;
+
+            void tekenVoorbeeldTwee(object sender, EventArgs e)
+            {
+                scale = 0.015625;
+                //double scale = 1;
+                double venX = -0.553223634375;
+                double venY = -0.6338478281250001;
+                maxNum = 100;
+                if (checkClick == false)
+                {
+                    generalColorPalette = whiteColorPalette;
+                }
+                else
+                {
+                    generalColorPalette = lastColorPalette;
+                }
+
+                zoomInvoer.Text = (scale).ToString();
+                xInvoer.Text = (venX).ToString();
+                yInvoer.Text = (venY).ToString();
+                invoerMax.Text = (maxNum).ToString();
+
+                teken(venX, venY);
+            }
+            mandelbrotVoorbeeldTwee.Click += tekenVoorbeeldTwee;
+
+            void tekenVoorbeeldDrie(object sender, EventArgs e)
+            {
+                scale = 0.00048828125;
+                //double scale = 1;
+                double venX = 0.3580791014648437; 
+                double venY = -0.6382358050781248;
+                maxNum = 100;
+                if (checkClick == false)
+                {
+                    generalColorPalette = whiteColorPalette;
+                }
+                else
+                {
+                    generalColorPalette = lastColorPalette;
+                }
+
+                zoomInvoer.Text = (scale).ToString();
+                xInvoer.Text = (venX).ToString();
+                yInvoer.Text = (venY).ToString();
+                invoerMax.Text = (maxNum).ToString();
+
+                teken(venX, venY);
+            }
+            mandelbrotVoorbeeldDrie.Click += tekenVoorbeeldDrie;
+
+            void tekenVoorbeeldVier(object sender, EventArgs e)
+            {
+                scale = 0.001953125;
+                //double scale = 1;
+                double venX = -1.4467107931640626; 
+                double venY = 9.765527343749922E-05;
+                maxNum = 100;
+                if (checkClick == false)
+                {
+                    generalColorPalette = whiteColorPalette;
+                }
+                else
+                {
+                    generalColorPalette = lastColorPalette;
+                }
+
+                zoomInvoer.Text = (scale).ToString();
+                xInvoer.Text = (venX).ToString();
+                yInvoer.Text = (venY).ToString();
+                invoerMax.Text = (maxNum).ToString();
+
+                teken(venX, venY);
+            }
+            mandelbrotVoorbeeldVier.Click += tekenVoorbeeldVier;
 
 
 
@@ -438,6 +553,13 @@ namespace MandelbrotProgramm_TF
                 hierY += (mouse.Y - 300) * 0.0033333 / deler;
 
                 deler *= 2;
+
+               zoomInvoer.Text = (scale).ToString();
+               xInvoer.Text = (hierX).ToString();
+               yInvoer.Text = (hierY).ToString();
+               invoerMax.Text = (maxNum).ToString();
+                
+
 
                 Debug.WriteLine(mouse.X);
                 Debug.WriteLine(mouse.Y);
