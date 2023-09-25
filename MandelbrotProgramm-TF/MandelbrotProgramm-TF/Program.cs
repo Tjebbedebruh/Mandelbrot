@@ -369,12 +369,19 @@ namespace MandelbrotProgramm_TF
 
             void berekenLocatie(object sender, EventArgs e)
             {
-                scale = double.Parse(zoomInvoer.Text);
-                //double scale = 1;
-                double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-                double venY = double.Parse(yInvoer.Text) / 300;
-                maxNum = int.Parse(invoerMax.Text);
-                teken(venX, venY);
+                try
+                {
+                    scale = double.Parse(zoomInvoer.Text);
+                    //double scale = 1;
+                    double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                    double venY = double.Parse(yInvoer.Text) / 300;
+                    maxNum = int.Parse(invoerMax.Text);
+                    teken(venX, venY);
+                }
+                catch 
+                {
+                    MessageBox.Show("Voer eerst geldige waardes in.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
             
