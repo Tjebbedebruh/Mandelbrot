@@ -147,6 +147,18 @@ namespace MandelbrotProgramm_TF
 
             };
 
+            Color[] whiteColorPalette = new Color[]
+            {
+                Color.FromArgb(0, 0, 0),
+                Color.FromArgb(255, 255, 255),
+                //Color.FromArgb(0,0,0),
+
+
+            };
+
+
+
+
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
             int kleurSchemaKeuze;
@@ -166,16 +178,22 @@ namespace MandelbrotProgramm_TF
             ToolStripMenuItem blauwSchemaKnop = new ToolStripMenuItem("Blauw");
             ToolStripMenuItem roodSchemaKnop = new ToolStripMenuItem("Rood");
             ToolStripMenuItem groenSchemaKnop = new ToolStripMenuItem("Groen");
+            ToolStripMenuItem zwartwitSchemaKnop = new ToolStripMenuItem("Zwart Wit");
             kleurSchemaMenu.Items.Add(blauwSchemaKnop);
             kleurSchemaMenu.Items.Add(roodSchemaKnop);
             kleurSchemaMenu.Items.Add(groenSchemaKnop);
+            kleurSchemaMenu.Items.Add(zwartwitSchemaKnop);
+            bool checkClick = false;
 
             void kleurSchema_Click(object sender, EventArgs e)
             {
                 kleurSchemaMenu.Show((Button)sender, new System.Drawing.Point(0, ((Button)sender).Height));
+                checkClick = true;
             }
 
             kleurSchema.Click += kleurSchema_Click;
+
+
 
             void blauwSchemaKnop_Click(object sender, EventArgs e)
             {
@@ -210,6 +228,13 @@ namespace MandelbrotProgramm_TF
 
             groenSchemaKnop.Click += groenSchemaKnop_Click;
 
+            void zwartwitSchemaKnop_Click(object sender, EventArgs e)
+            {
+                generalColorPalette = whiteColorPalette;
+                lastColorPalette = generalColorPalette;
+            }
+
+            zwartwitSchemaKnop.Click += zwartwitSchemaKnop_Click;
             Debug.WriteLine(generalColorPalette);
 
 
@@ -429,7 +454,15 @@ namespace MandelbrotProgramm_TF
                 x = 0;
                 y = 0;
                 maxNum = 100;
-                generalColorPalette = lastColorPalette;
+                if (checkClick == false)
+                {
+                    generalColorPalette = whiteColorPalette;
+                }
+                else
+                {
+                    generalColorPalette = lastColorPalette;
+                }
+                
                 teken(x, y);
 
 
