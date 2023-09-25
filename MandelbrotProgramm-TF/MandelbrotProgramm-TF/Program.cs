@@ -10,13 +10,6 @@ namespace MandelbrotProgramm_TF
 {
     internal static class Program
 
-        // de knoppen werken nog niet naar rechts maar dat gaat gefixt worden, ik moet nog even uitvogelen hoe ik kleurschema kan assignen aan het goeie kleurschema kleurtje. 
-
-
-
-
-
-
     {
        static void Main()
         {   
@@ -28,7 +21,7 @@ namespace MandelbrotProgramm_TF
             scherm.BackColor = BackColor;
             Color BackColorTwo = Color.FromArgb(34, 34, 34);
 
-
+            //Groote van de output bepalen
             int plaatjex = 600;
             int plaatjey = 600;
 
@@ -44,7 +37,6 @@ namespace MandelbrotProgramm_TF
             zoomTekst.Text = " Zoomwaarde: ";
             zoomTekst.ForeColor = Color.White;
             zoomTekst.BackColor = BackColorTwo;
-
 
             TextBox xInvoer = new TextBox();
             scherm.Controls.Add(xInvoer);
@@ -64,7 +56,6 @@ namespace MandelbrotProgramm_TF
             yInvoer.Location = new Point(100, 180);
             yInvoer.Size = new Size(100, 50);
 
-
             Label yInvoerTekst = new Label();
             scherm.Controls.Add(yInvoerTekst);
             yInvoerTekst.Location = new Point(0, 180);
@@ -78,7 +69,6 @@ namespace MandelbrotProgramm_TF
             invoerMax.Location = new Point(100, 220);
             invoerMax.Size = new Size(100, 50);
 
-
             Label invoerMaxTekst = new Label();
             scherm.Controls.Add(invoerMaxTekst);
             invoerMaxTekst.Location = new Point(0, 220);
@@ -88,13 +78,11 @@ namespace MandelbrotProgramm_TF
             invoerMaxTekst.BackColor = BackColorTwo;
 
             //standaar kleuren voor mandelbrotset
-            Color rgbColor;
-
-            Color[] generalColorPalette = new Color[] { };
+             Color[] generalColorPalette = new Color[] { };
 
             Color[] lastColorPalette = new Color[] { };
 
-
+            //alle kleurpalleten
             Color[] blueishColorPalette = new Color[]
             {
                 Color.FromArgb(1,31,71),
@@ -153,13 +141,9 @@ namespace MandelbrotProgramm_TF
 
             };
 
-
-
-
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-            int kleurSchemaKeuze;
-
+            //kleurkeuze menu maken
             Button kleurSchema = new Button();
             scherm.Controls.Add(kleurSchema);
             kleurSchema.Text = "Kleurschema";
@@ -168,7 +152,6 @@ namespace MandelbrotProgramm_TF
             kleurSchema.ForeColor = Color.White;
             kleurSchema.BackColor = Color.Gray;
             kleurSchema.FlatStyle = FlatStyle.Flat;
-
 
 
             ContextMenuStrip kleurSchemaMenu = new ContextMenuStrip();
@@ -182,6 +165,7 @@ namespace MandelbrotProgramm_TF
             kleurSchemaMenu.Items.Add(zwartwitSchemaKnop);
             bool checkClick = false;
 
+            //kleurkeuzemenu functies
             void kleurSchema_Click(object sender, EventArgs e)
             {
                 kleurSchemaMenu.Show((Button)sender, new System.Drawing.Point(0, ((Button)sender).Height));
@@ -189,8 +173,6 @@ namespace MandelbrotProgramm_TF
             }
 
             kleurSchema.Click += kleurSchema_Click;
-
-
 
             void blauwSchemaKnop_Click(object sender, EventArgs e)
             {
@@ -251,8 +233,6 @@ namespace MandelbrotProgramm_TF
             reset.FlatStyle = FlatStyle.Flat;
 
             Label mandelbrotVoorbeeld = new Label();
-            
-            
             mandelbrotVoorbeeld.Size = new Size(100, 100);
             mandelbrotVoorbeeld.Location = new Point(50, 350);
             Image mandelVoorbeeld = Image.FromFile("rszvoorbeeld1.png");
@@ -267,7 +247,6 @@ namespace MandelbrotProgramm_TF
             mandelbrotVoorbeeldTwee.Location = new Point(50, 460);
             Image mandelVoorbeeld2 = Image.FromFile("rszvoorbeeld2.png");
             mandelbrotVoorbeeldTwee.Image = mandelVoorbeeld2;
-
             mandelbrotVoorbeeldTwee.BackColor = BackColorFour;
 
             Label mandelbrotVoorbeeldDrie = new Label();
@@ -276,7 +255,6 @@ namespace MandelbrotProgramm_TF
             mandelbrotVoorbeeldDrie.Location = new Point(50, 570);
             Image mandelVoorbeeld3 = Image.FromFile("rszvoorbeeld3.png");
             mandelbrotVoorbeeldDrie.Image = mandelVoorbeeld3;
-
             mandelbrotVoorbeeldDrie.BackColor = BackColorFour;
 
             Label mandelbrotVoorbeeldVier = new Label();
@@ -285,30 +263,13 @@ namespace MandelbrotProgramm_TF
             mandelbrotVoorbeeldVier.Location = new Point(50, 680);
             Image mandelVoorbeeld4 = Image.FromFile("rszvoorbeeld4.png");
             mandelbrotVoorbeeldVier.Image = mandelVoorbeeld4;
-
             mandelbrotVoorbeeldVier.BackColor = BackColorFour;
-
 
             Label ColorFill = new Label();
             scherm.Controls.Add(ColorFill);
             ColorFill.Location = new Point(0, 0);
             ColorFill.Size = new Size(200, 1200);
             ColorFill.BackColor = BackColorTwo; 
-
-            /*Label ColorFillTwo = new Label();
-            scherm.Controls.Add(ColorFillTwo);
-            ColorFillTwo.Location = new Point(0, 0);
-            ColorFillTwo.Size = new Size(400, 1200);
-            Color BackColorThree = Color.FromArgb(41, 41, 41);
-            ColorFillTwo.BackColor = BackColorThree;*/
-
-            /*
-            Label ColorFill = new Label();
-            scherm.Controls.Add(ColorFill);
-            ColorFill.Location = new Point(0, 0);
-            ColorFill.Size = new Size(600, 1200);
-            Color BackColorThree = Color.FromArgb(34, 34, 34);
-            ColorFill.BackColor = BackColorThree;*/
 
             Label mandelbrotOutput = new Label();
             scherm.Controls.Add(mandelbrotOutput);
@@ -330,14 +291,14 @@ namespace MandelbrotProgramm_TF
             double hierY = 0;
             int deler = 1;
 
-            Bitmap plaatje = new Bitmap(plaatjex, plaatjey);
+            //bitmap declareren
+            Bitmap plaatje = new(plaatjex, plaatjey);
 
-         
-
-
-
+    
+            //mandelbrotset tekenen
             void teken(double vensterX, double vensterY)
             {
+                //voor elke pixel bereken of het in de mandelbrotsetzit en vervolgens inkleuren met de corresponderende kleur
                 for (int OutputX = 0; OutputX < mandelbrotOutput.Width; OutputX++)
                 {
                     for (int OutputY = 0; OutputY < mandelbrotOutput.Height; OutputY++)
@@ -345,16 +306,11 @@ namespace MandelbrotProgramm_TF
                         //x en y locatie bepalen in het raster van de mandelbrotset IPV in het raster van pixel
                         x = ((double)(OutputX - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale) + vensterX);
                         y = ((double)(OutputY - mandelbrotOutput.Height / 2) / (0.25 * mandelbrotOutput.Height / scale) + vensterY);
-
-                      
-
+                                            
                         //startwaardes van de formule
                         double a = 0;
                         double b = 0;
-                        //int maxNum = 100;
-
-                    
-
+                                           
                         //Mandelgetal uitrekenen per pixel
                         int Mandelgetal = 0;
                         for (int i = 1; i <= maxNum; i++)
@@ -371,23 +327,9 @@ namespace MandelbrotProgramm_TF
                             {
                                 break;
                             }
-
                         }
-                        //pixels kleuren op basis van het mandelgetal
 
-
-                        /*
-                        if (Mandelgetal % 2 == 0 || Mandelgetal >= maxNum)
-                        {
-
-                            plaatje.SetPixel(OutputX, OutputY, Color.Black);
-                        }
-                        else
-                        {
-                            plaatje.SetPixel(OutputX, OutputY, Color.White);
-                        }
-                        */
-
+                        //pixels inkleuren op basis van of ze wel of niet inde mandelbrotset zitten of niet
                         if (Mandelgetal >= maxNum)
                         {
                             plaatje.SetPixel(OutputX, OutputY, Color.Black);
@@ -398,8 +340,7 @@ namespace MandelbrotProgramm_TF
                             plaatje.SetPixel(OutputX, OutputY, generalColorPalette[Mandelgetal % generalColorPalette.Length]);
                         }
 
-                        
-
+                        //plaatje outputten
                         mandelbrotOutput.Image = plaatje;
                         mandelbrotOutput.Invalidate();
 
@@ -409,15 +350,11 @@ namespace MandelbrotProgramm_TF
                 }
             }
 
-
-
-            
-
             void tekenVoorbeeldEen(object sender, EventArgs e)
             {
+                //waardes aanpassen op basis van de preset
                 scale = 0.001953125;
-                //double scale = 1;
-                double venX = -0.45900175759277345; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                double venX = -0.45900175759277345;
                 double venY = -0.5803083244628907;
                 hierX = -0.45900175759277345;
                 hierY = -0.5803083244628907;
@@ -432,20 +369,21 @@ namespace MandelbrotProgramm_TF
                     generalColorPalette = lastColorPalette;
                 }
 
+                //locatie, zoom en maxNum waardes laten zien in de input velden
                 zoomInvoer.Text = (scale).ToString();
                 xInvoer.Text = (venX).ToString();
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
 
-
+                //plaatje genereren
                 teken(venX, venY);
             }
             mandelbrotVoorbeeld.Click += tekenVoorbeeldEen;
 
             void tekenVoorbeeldTwee(object sender, EventArgs e)
             {
+                //waardes aanpassen op basis van de preset
                 scale = 0.015625;
-                //double scale = 1;
                 double venX = -0.553223634375;
                 double venY = -0.6338478281250001;
                 hierX = -0.553223634375;
@@ -461,28 +399,21 @@ namespace MandelbrotProgramm_TF
                     generalColorPalette = lastColorPalette;
                 }
 
+                //locatie, zoom en maxNum waardes laten zien in de input velden
                 zoomInvoer.Text = (scale).ToString();
                 xInvoer.Text = (venX).ToString();
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
 
-                /*
-                Debug.WriteLine(scale);
-                Debug.WriteLine(venX);
-                Debug.WriteLine(venY);
-                Debug.WriteLine(maxNum);
-                Debug.WriteLine(deler);
-                */
-
-
+                //plaatje genereren
                 teken(venX, venY);
             }
             mandelbrotVoorbeeldTwee.Click += tekenVoorbeeldTwee;
 
             void tekenVoorbeeldDrie(object sender, EventArgs e)
             {
+                //waardes aanpassen op basis van de preset
                 scale = 0.00048828125;
-                //double scale = 1;
                 double venX = 0.3580791014648437; 
                 double venY = -0.6382358050781248;
                 hierX = 0.3580791014648437;
@@ -498,19 +429,21 @@ namespace MandelbrotProgramm_TF
                     generalColorPalette = lastColorPalette;
                 }
 
+                //locatie, zoom en maxNum waardes laten zien in de input velden
                 zoomInvoer.Text = (scale).ToString();
                 xInvoer.Text = (venX).ToString();
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
-
+                
+                //plaatje genereren
                 teken(venX, venY);
             }
             mandelbrotVoorbeeldDrie.Click += tekenVoorbeeldDrie;
 
             void tekenVoorbeeldVier(object sender, EventArgs e)
             {
+                //waardes aanpassen op basis van de preset
                 scale = 0.001953125;
-                //double scale = 1;
                 double venX = -1.4467107931640626;
                 double venY = 9.765527343749922E-05;
                 hierX = -1.4467107931640626;
@@ -526,26 +459,30 @@ namespace MandelbrotProgramm_TF
                     generalColorPalette = lastColorPalette;
                 }
 
+                //locatie, zoom en maxNum waardes laten zien in de input velden
                 zoomInvoer.Text = (scale).ToString();
                 xInvoer.Text = (venX).ToString();
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
 
+                //plaatje genereren
                 teken(venX , venY );
             }
             mandelbrotVoorbeeldVier.Click += tekenVoorbeeldVier;
 
-
+            //plaatje genereren op basis van de input textboxes
             void berekenLocatie(object sender, EventArgs e)
             {
+                //wanneer geen geldige input wordt gegeven; error outputten
                 try
                 {
+                    //input doorgeven en daar plaatje van genereren
                     scale = double.Parse(zoomInvoer.Text);
-                    //double scale = 1;
-                    double venX = double.Parse(xInvoer.Text); // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                    double venX = double.Parse(xInvoer.Text); 
                     double venY = double.Parse(yInvoer.Text);
                     maxNum = int.Parse(invoerMax.Text);
 
+                    //color pallete selecteren
                     if (checkClick == false)
                     {
                         generalColorPalette = whiteColorPalette;
@@ -555,9 +492,8 @@ namespace MandelbrotProgramm_TF
                         generalColorPalette = lastColorPalette;
                     }
 
+                    //daadwerkelijk het plaatje genereren
                     teken(venX, venY);
-
-                    
 
                 }
                 catch
@@ -568,51 +504,37 @@ namespace MandelbrotProgramm_TF
             }
 
 
-
+            //op basis van linkermuisclick of rechtermuisclick, inzoomeen of uitzoomen
             void mouseClick(object sender, MouseEventArgs mouse)
             {
 
                 //inzoomen
                 if (mouse.Button == MouseButtons.Left)
                 {
-                    scale = scale / 2;
-
+                    scale /= 2;
                 }
                 //uitzoomen
                 else if (mouse.Button == MouseButtons.Right)
                 {
-                    scale = scale * 2;
+                    scale *= 2;
 
                 }
+
                 //x en y locatie bepalen in het raster van de mandelbrotset op basis van waar iemand klikt
-
-
-
                 hierX += (mouse.X - 300) * 0.0033333 / deler;
                 hierY += (mouse.Y - 300) * 0.0033333 / deler;
 
+                //deler keer 2 want je bent ook 2 keer zo diep ingezoomd
                 deler *= 2;
-
-               zoomInvoer.Text = (scale).ToString();
-               xInvoer.Text = (hierX).ToString();
-               yInvoer.Text = (hierY).ToString();
-               invoerMax.Text = (maxNum).ToString();
                 
-
-
-                //Debug.WriteLine(mouse.X);
-                //Debug.WriteLine(mouse.Y);
-                Debug.WriteLine(hierX);
-                Debug.WriteLine(hierY);
-
+                //locatie, zoom en maxNum waardes laten zien in de input velden
+                zoomInvoer.Text = (scale).ToString();
+                xInvoer.Text = (hierX).ToString();
+                yInvoer.Text = (hierY).ToString();
+                invoerMax.Text = (maxNum).ToString();
+               
+                //plaatje genereren
                 teken(hierX, hierY);
-                //x = ((mouse.X) - mandelbrotOutput.Width / 2) / (0.25 * mandelbrotOutput.Width / scale);
-                //y = ((mouse.Y) - mandelbrotOutput.Height / 2) / (0.25 * mandelbrotOutput.Height / scale);
-
-                //teken(x, y);
-
-
-
             }
 
             void ResetAction(object sender, EventArgs e)
@@ -630,17 +552,16 @@ namespace MandelbrotProgramm_TF
                 else
                 {
                     generalColorPalette = lastColorPalette;
-                }
+                } 
                 
+                //standaard plaatje tekenen
                 teken(x, y);
 
-
-
-                //tekstvakjes leegmaken
-                zoomInvoer.Text = string.Empty;
-                xInvoer.Text = string.Empty;
-                yInvoer.Text = string.Empty;
-                invoerMax.Text = string.Empty;
+                //tekstvakjes vullen met standaard waardes
+                zoomInvoer.Text = "1";
+                xInvoer.Text = "0";
+                yInvoer.Text = "0";
+                invoerMax.Text = "100";
 
                 //zoomvariabelen resetten
                 hierX = 0;
@@ -653,8 +574,7 @@ namespace MandelbrotProgramm_TF
             mandelbrotOutput.MouseClick += mouseClick;
             go.Click += berekenLocatie;
 
-            Debug.WriteLine(generalColorPalette.Length);
-
+            //Run applicatie
             Application.Run(scherm);
         }
     }
