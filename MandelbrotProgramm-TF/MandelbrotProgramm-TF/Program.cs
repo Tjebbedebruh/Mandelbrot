@@ -100,6 +100,7 @@ namespace MandelbrotProgramm_TF
 
             Color[] blueishColorPalette = new Color[]
             {
+                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(1,31,71),
                 Color.FromArgb(3,4,94),
                 Color.FromArgb(0,74,133),
@@ -119,6 +120,7 @@ namespace MandelbrotProgramm_TF
 
             Color[] redishColorPalette = new Color[]
             {
+                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(3,7,30),
                 Color.FromArgb(55,6,23),
                 Color.FromArgb(106,4,15),
@@ -134,6 +136,7 @@ namespace MandelbrotProgramm_TF
 
             Color[] greenishColorPalette = new Color[]
             {
+                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(0,75,35),
                 Color.FromArgb(0,100,0),
                 Color.FromArgb(0,107,0),
@@ -394,19 +397,27 @@ namespace MandelbrotProgramm_TF
 
             void berekenLocatie(object sender, EventArgs e)
             {
-                scale = double.Parse(zoomInvoer.Text);
-                //double scale = 1;
-                double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-                double venY = double.Parse(yInvoer.Text) / 300;
-                maxNum = int.Parse(invoerMax.Text);
-                teken(venX, venY);
+                try
+                {
+                    scale = double.Parse(zoomInvoer.Text);
+                    //double scale = 1;
+                    double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                    double venY = double.Parse(yInvoer.Text) / 300;
+                    maxNum = int.Parse(invoerMax.Text);
+                    teken(venX, venY);
+                }
+                catch
+                {
+                    MessageBox.Show("Voer eerst geldige waardes in.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
 
-            
 
 
-            
-            
+
+
+
             void mouseClick(object sender, MouseEventArgs mouse)
             {
 
