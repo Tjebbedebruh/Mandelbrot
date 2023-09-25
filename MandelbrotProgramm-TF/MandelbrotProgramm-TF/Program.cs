@@ -185,7 +185,7 @@ namespace MandelbrotProgramm_TF
             void kleurSchema_Click(object sender, EventArgs e)
             {
                 kleurSchemaMenu.Show((Button)sender, new System.Drawing.Point(0, ((Button)sender).Height));
-                checkClick = true;
+                
             }
 
             kleurSchema.Click += kleurSchema_Click;
@@ -196,6 +196,7 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = blueishColorPalette;
                 lastColorPalette = generalColorPalette;
+                checkClick = true;
             }
 
             blauwSchemaKnop.Click += blauwSchemaKnop_Click;
@@ -204,6 +205,7 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = redishColorPalette;
                 lastColorPalette = generalColorPalette;
+                checkClick = true;
             }
 
             roodSchemaKnop.Click += roodSchemaKnop_Click;
@@ -212,6 +214,7 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = greenishColorPalette;
                 lastColorPalette = generalColorPalette;
+                checkClick = true;
             }
 
             groenSchemaKnop.Click += groenSchemaKnop_Click;
@@ -220,10 +223,11 @@ namespace MandelbrotProgramm_TF
             {
                 generalColorPalette = whiteColorPalette;
                 lastColorPalette = generalColorPalette;
+                checkClick = true;
             }
 
             zwartwitSchemaKnop.Click += zwartwitSchemaKnop_Click;
-            Debug.WriteLine(generalColorPalette);
+    
 
             //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -407,23 +411,7 @@ namespace MandelbrotProgramm_TF
 
 
 
-            void berekenLocatie(object sender, EventArgs e)
-            {
-                try
-                {
-                    scale = double.Parse(zoomInvoer.Text);
-                    //double scale = 1;
-                    double venX = double.Parse(xInvoer.Text) / 300; // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
-                    double venY = double.Parse(yInvoer.Text) / 300;
-                    maxNum = int.Parse(invoerMax.Text);
-                    teken(venX, venY);
-                }
-                catch
-                {
-                    MessageBox.Show("Voer eerst geldige waardes in.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-            }
+            
 
             void tekenVoorbeeldEen(object sender, EventArgs e)
             {
@@ -505,8 +493,11 @@ namespace MandelbrotProgramm_TF
             {
                 scale = 0.001953125;
                 //double scale = 1;
-                double venX = -1.4467107931640626; 
+                double venX = -1.4467107931640626;
                 double venY = 9.765527343749922E-05;
+
+                double venX2 = 300 * -1.4467107931640626;
+                double venY2 = 300 * 9.765527343749922E-05;
                 maxNum = 100;
                 if (checkClick == false)
                 {
@@ -522,11 +513,41 @@ namespace MandelbrotProgramm_TF
                 yInvoer.Text = (venY).ToString();
                 invoerMax.Text = (maxNum).ToString();
 
-                teken(venX, venY);
+                teken(venX , venY );
             }
             mandelbrotVoorbeeldVier.Click += tekenVoorbeeldVier;
 
 
+            void berekenLocatie(object sender, EventArgs e)
+            {
+                try
+                {
+                    scale = double.Parse(zoomInvoer.Text);
+                    //double scale = 1;
+                    double venX = double.Parse(xInvoer.Text); // dit moet in tiendes dus als je 1 wilt moet het 0.1 zijn
+                    double venY = double.Parse(yInvoer.Text);
+                    maxNum = int.Parse(invoerMax.Text);
+
+                    if (checkClick == false)
+                    {
+                        generalColorPalette = whiteColorPalette;
+                    }
+                    else
+                    {
+                        generalColorPalette = lastColorPalette;
+                    }
+
+                    teken(venX, venY);
+
+                    
+
+                }
+                catch
+                {
+                    MessageBox.Show("Voer eerst geldige waardes in.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
 
 
 
