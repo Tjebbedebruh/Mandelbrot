@@ -100,7 +100,6 @@ namespace MandelbrotProgramm_TF
 
             Color[] blueishColorPalette = new Color[]
             {
-                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(1,31,71),
                 Color.FromArgb(3,4,94),
                 Color.FromArgb(0,74,133),
@@ -120,7 +119,6 @@ namespace MandelbrotProgramm_TF
 
             Color[] redishColorPalette = new Color[]
             {
-                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(3,7,30),
                 Color.FromArgb(55,6,23),
                 Color.FromArgb(106,4,15),
@@ -136,7 +134,6 @@ namespace MandelbrotProgramm_TF
 
             Color[] greenishColorPalette = new Color[]
             {
-                Color.FromArgb(0, 0, 0),
                 Color.FromArgb(0,75,35),
                 Color.FromArgb(0,100,0),
                 Color.FromArgb(0,107,0),
