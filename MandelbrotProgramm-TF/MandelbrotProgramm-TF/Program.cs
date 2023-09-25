@@ -95,6 +95,8 @@ namespace MandelbrotProgramm_TF
 
             Color[] generalColorPalette = new Color[] { };
 
+            Color[] lastColorPalette = new Color[] { };
+
 
             Color[] blueishColorPalette = new Color[]
             {
@@ -179,6 +181,7 @@ namespace MandelbrotProgramm_TF
             {
 
                 generalColorPalette = blueishColorPalette;
+                lastColorPalette = generalColorPalette;
 
                 //Color[] kleurSchemaKeuze = new Color[blueishColorPalette.Length];
                 //Array.Copy(blueishColorPalette, kleurSchemaKeuze, blueishColorPalette.Length);
@@ -190,6 +193,7 @@ namespace MandelbrotProgramm_TF
             void roodSchemaKnop_Click(object sender, EventArgs e)
             {
                 generalColorPalette = redishColorPalette;
+                lastColorPalette = generalColorPalette;
                 //Color[] kleurSchemaKeuze = new Color[redishColorPalette.Length];
                 //Array.Copy(redishColorPalette, kleurSchemaKeuze, redishColorPalette.Length);
             }
@@ -199,6 +203,7 @@ namespace MandelbrotProgramm_TF
             void groenSchemaKnop_Click(object sender, EventArgs e)
             {
                 generalColorPalette = greenishColorPalette;
+                lastColorPalette = generalColorPalette;
                 //Color[] kleurSchemaKeuze = new Color[greenishColorPalette.Length];
                 //Array.Copy(greenishColorPalette, kleurSchemaKeuze, greenishColorPalette.Length);
             }
@@ -424,7 +429,7 @@ namespace MandelbrotProgramm_TF
                 x = 0;
                 y = 0;
                 maxNum = 100;
-                generalColorPalette = blueishColorPalette;
+                generalColorPalette = lastColorPalette;
                 teken(x, y);
 
 
