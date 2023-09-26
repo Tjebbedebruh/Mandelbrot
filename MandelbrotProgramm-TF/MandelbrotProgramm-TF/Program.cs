@@ -320,10 +320,11 @@ namespace MandelbrotProgramm_TF
                             b = (double)(2 * a * b + y);
                             a = temporary;
 
+                            //afstand berekenen
+                            double afstand = (a * a + b * b);
+                            
 
-                            double afstand = Math.Sqrt(a * a + b * b);
-
-                            if (afstand > 2)
+                            if (afstand > 4)
                             {
                                 break;
                             }
